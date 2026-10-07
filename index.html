@@ -1,369 +1,2678 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Pranto K. Biswas | Portfolio</title>
+<title>Pranto K. Biswas | Cyber Developer</title>
 
-    <meta name="description" content="Pranto K. Biswas - CSE Student, Web Developer and Aspiring Software Engineer.">
+<meta name="description" content="Pranto K. Biswas - CSE Student, Web Developer, AI & Data Science Enthusiast">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        html {
-            scroll-behavior: smooth;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-        body {
-            background: #f5f7fb;
-            color: #222;
-            line-height: 1.6;
-        }
+<style>
 
-        nav {
-            background: #111827;
-            padding: 18px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+:root{
+    --bg:#020609;
+    --bg2:#061014;
+    --card:rgba(7,18,23,.78);
+    --border:rgba(0,255,170,.18);
+    --green:#00ff9c;
+    --cyan:#00d9ff;
+    --blue:#1677ff;
+    --text:#e8fff7;
+    --muted:#8ba9a2;
+    --danger:#ff4d67;
+    --shadow:0 0 40px rgba(0,255,156,.10);
+}
 
-        nav h2 {
-            color: white;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            font-size: 15px;
-        }
+body{
+    font-family:Inter, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    overflow-x:hidden;
+}
 
-        nav a:hover {
-            color: #60a5fa;
-        }
+a{
+    color:inherit;
+    text-decoration:none;
+}
 
-        .hero {
-            min-height: 90vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, #111827, #2563eb);
-            color: white;
-        }
+button,
+input,
+textarea{
+    font-family:inherit;
+}
 
-        .hero-content {
-            max-width: 800px;
-        }
+/* ================= MATRIX ================= */
 
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 10px;
-        }
+#matrix{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:-5;
+    opacity:.18;
+}
 
-        .hero h3 {
-            font-size: 24px;
-            font-weight: normal;
-            margin-bottom: 20px;
-        }
+.grid-bg{
+    position:fixed;
+    inset:0;
+    z-index:-4;
+    pointer-events:none;
 
-        .hero p {
-            font-size: 17px;
-            margin-bottom: 30px;
-        }
+    background-image:
+        linear-gradient(rgba(0,255,156,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(0,255,156,.025) 1px,transparent 1px);
 
-        .btn {
-            display: inline-block;
-            padding: 12px 25px;
-            background: white;
-            color: #2563eb;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            margin: 5px;
-        }
+    background-size:45px 45px;
 
-        .btn:hover {
-            background: #e5e7eb;
-        }
+    mask-image:linear-gradient(to bottom,black,transparent);
+}
 
-        section {
-            padding: 70px 8%;
-        }
+.glow{
+    position:fixed;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    filter:blur(120px);
+    opacity:.12;
+    pointer-events:none;
+    z-index:-3;
+}
 
-        section h2 {
-            text-align: center;
-            font-size: 32px;
-            margin-bottom: 35px;
-        }
+.glow.one{
+    background:#00ff9c;
+    top:-200px;
+    left:-150px;
+}
 
-        .about {
-            max-width: 850px;
-            margin: auto;
-            text-align: center;
-            font-size: 17px;
-        }
+.glow.two{
+    background:#0077ff;
+    right:-200px;
+    top:35%;
+}
 
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-        }
+/* ================= NAV ================= */
 
-        .skill {
-            background: white;
-            padding: 15px 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-        }
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
 
-        .projects {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
+    background:rgba(2,6,9,.72);
+    backdrop-filter:blur(18px);
 
-        .project {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-        }
+    border-bottom:1px solid rgba(0,255,156,.10);
+}
 
-        .project h3 {
-            margin-bottom: 10px;
-            color: #2563eb;
-        }
+.nav-inner{
+    max-width:1200px;
+    margin:auto;
 
-        .contact {
-            text-align: center;
-        }
+    height:72px;
 
-        .contact a {
-            color: #2563eb;
-            text-decoration: none;
-        }
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 
-        footer {
-            background: #111827;
-            color: white;
-            text-align: center;
-            padding: 25px;
-        }
+    padding:0 25px;
+}
 
-        @media (max-width: 600px) {
-            nav {
-                flex-direction: column;
-                gap: 10px;
-            }
+.logo{
+    font-family:"JetBrains Mono",monospace;
+    font-size:20px;
+    font-weight:700;
+}
 
-            nav a {
-                margin: 5px;
-            }
+.logo span{
+    color:var(--green);
+}
 
-            .hero h1 {
-                font-size: 36px;
-            }
+.nav-links{
+    display:flex;
+    gap:28px;
+}
 
-            .hero h3 {
-                font-size: 20px;
-            }
-        }
-    </style>
+.nav-links a{
+    color:#a7c0ba;
+    font-family:"JetBrains Mono",monospace;
+    font-size:13px;
+
+    transition:.25s;
+}
+
+.nav-links a:hover{
+    color:var(--green);
+    text-shadow:0 0 15px var(--green);
+}
+
+.menu{
+    display:none;
+    font-size:25px;
+    cursor:pointer;
+}
+
+/* ================= GLOBAL ================= */
+
+.container{
+    width:min(1150px,92%);
+    margin:auto;
+}
+
+section{
+    padding:110px 0;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:55px;
+}
+
+.section-title .mini{
+    color:var(--green);
+    font-family:"JetBrains Mono",monospace;
+    font-size:13px;
+    margin-bottom:10px;
+}
+
+.section-title h2{
+    font-size:40px;
+}
+
+.section-title p{
+    color:var(--muted);
+    margin-top:12px;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    min-height:100vh;
+
+    display:flex;
+    align-items:center;
+
+    padding-top:80px;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+    gap:60px;
+    align-items:center;
+}
+
+.terminal-label{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+
+    padding:9px 13px;
+
+    border:1px solid var(--border);
+    border-radius:8px;
+
+    background:rgba(0,255,156,.04);
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:12px;
+    color:#a5cfc2;
+
+    margin-bottom:22px;
+}
+
+.dot{
+    width:8px;
+    height:8px;
+    background:var(--green);
+    border-radius:50%;
+    box-shadow:0 0 12px var(--green);
+}
+
+.hero h1{
+    font-size:clamp(45px,7vw,82px);
+    line-height:.98;
+    letter-spacing:-4px;
+    margin-bottom:22px;
+}
+
+.hero h1 span{
+    color:var(--green);
+    text-shadow:0 0 35px rgba(0,255,156,.25);
+}
+
+.typing{
+    color:var(--cyan);
+    font-family:"JetBrains Mono",monospace;
+    min-height:27px;
+    margin-bottom:22px;
+}
+
+.hero-text{
+    color:var(--muted);
+    max-width:620px;
+    line-height:1.8;
+    font-size:16px;
+}
+
+.buttons{
+    display:flex;
+    gap:14px;
+    margin-top:30px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:13px 20px;
+    border-radius:9px;
+
+    border:1px solid var(--border);
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:13px;
+
+    cursor:pointer;
+    transition:.3s;
+}
+
+.btn.primary{
+    background:var(--green);
+    color:#00130b;
+    font-weight:700;
+}
+
+.btn.primary:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 30px rgba(0,255,156,.35);
+}
+
+.btn.secondary{
+    background:rgba(255,255,255,.025);
+    color:white;
+}
+
+.btn.secondary:hover{
+    border-color:var(--green);
+    color:var(--green);
+}
+
+/* ================= COMPUTER ================= */
+
+.computer-wrap{
+    perspective:1200px;
+}
+
+.computer{
+    transform-style:preserve-3d;
+    transition:transform .2s ease;
+}
+
+.monitor{
+    position:relative;
+
+    width:100%;
+    max-width:520px;
+    margin:auto;
+
+    background:#0a1115;
+
+    border:10px solid #10191e;
+    border-radius:15px;
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.65),
+        0 0 50px rgba(0,255,156,.08);
+
+    overflow:hidden;
+}
+
+.monitor-top{
+    height:32px;
+    display:flex;
+    align-items:center;
+    gap:7px;
+    padding:0 12px;
+
+    background:#0e171b;
+    border-bottom:1px solid #17262b;
+}
+
+.circle{
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:#425057;
+}
+
+.code{
+    padding:25px;
+    min-height:310px;
+
+    font-family:"JetBrains Mono",monospace;
+    font-size:13px;
+    line-height:1.9;
+
+    color:#8ca9a2;
+}
+
+.code .green{color:#00ff9c}
+.code .blue{color:#00d9ff}
+.code .purple{color:#c792ea}
+.code .yellow{color:#ffcb6b}
+
+.monitor-stand{
+    width:100px;
+    height:45px;
+    background:#10191e;
+    margin:auto;
+}
+
+.monitor-base{
+    width:180px;
+    height:12px;
+    border-radius:50%;
+    background:#10191e;
+    margin:auto;
+}
+
+/* ================= CARDS ================= */
+
+.card{
+    background:var(--card);
+    border:1px solid var(--border);
+
+    border-radius:15px;
+
+    box-shadow:var(--shadow);
+
+    backdrop-filter:blur(12px);
+
+    transition:.35s;
+}
+
+.card:hover{
+    transform:translateY(-7px);
+    border-color:rgba(0,255,156,.38);
+    box-shadow:0 20px 50px rgba(0,0,0,.35);
+}
+
+/* ================= ABOUT ================= */
+
+.about-grid{
+    display:grid;
+    grid-template-columns:.85fr 1.15fr;
+    gap:30px;
+}
+
+.profile-card{
+    padding:30px;
+    text-align:center;
+}
+
+.avatar{
+    width:160px;
+    height:160px;
+    border-radius:50%;
+
+    margin:5px auto 20px;
+
+    border:2px solid var(--green);
+
+    background:
+        radial-gradient(circle at 50% 35%,#163d35,#071014 55%,#020609);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:55px;
+
+    box-shadow:
+        0 0 40px rgba(0,255,156,.15);
+}
+
+.profile-card h3{
+    font-size:23px;
+}
+
+.profile-card .role{
+    color:var(--green);
+    font-family:"JetBrains Mono",monospace;
+    font-size:12px;
+    margin-top:7px;
+}
+
+.about-text{
+    padding:32px;
+}
+
+.about-text h3{
+    font-size:25px;
+    margin-bottom:18px;
+}
+
+.about-text p{
+    color:var(--muted);
+    line-height:1.9;
+    margin-bottom:15px;
+}
+
+.info-list{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-top:22px;
+}
+
+.info{
+    padding:14px;
+    background:rgba(0,255,156,.025);
+    border:1px solid rgba(0,255,156,.09);
+    border-radius:9px;
+}
+
+.info small{
+    color:#668079;
+    display:block;
+    margin-bottom:5px;
+}
+
+.info strong{
+    font-size:13px;
+}
+
+/* ================= SKILLS ================= */
+
+.skills-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.skill{
+    padding:25px;
+    text-align:center;
+}
+
+.skill-icon{
+    font-size:30px;
+    margin-bottom:14px;
+}
+
+.skill h3{
+    font-size:16px;
+    margin-bottom:7px;
+}
+
+.skill p{
+    color:#708c84;
+    font-size:12px;
+}
+
+/* ================= PROJECTS ================= */
+
+.projects-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.project{
+    padding:25px;
+    display:flex;
+    flex-direction:column;
+    min-height:250px;
+}
+
+.project-number{
+    color:var(--green);
+    font-family:"JetBrains Mono",monospace;
+    font-size:12px;
+    margin-bottom:18px;
+}
+
+.project h3{
+    font-size:21px;
+    margin-bottom:12px;
+}
+
+.project p{
+    color:var(--muted);
+    line-height:1.65;
+    font-size:13px;
+    flex:1;
+}
+
+.tags{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+    margin:20px 0;
+}
+
+.tag{
+    padding:5px 8px;
+    border-radius:5px;
+    background:rgba(0,255,156,.06);
+    color:#79cdb2;
+    border:1px solid rgba(0,255,156,.10);
+    font-family:"JetBrains Mono",monospace;
+    font-size:10px;
+}
+
+.project-links{
+    display:flex;
+    gap:10px;
+}
+
+.project-links a{
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px;
+    color:var(--green);
+}
+
+/* ================= JOURNEY ================= */
+
+.timeline{
+    max-width:800px;
+    margin:auto;
+    position:relative;
+}
+
+.timeline:before{
+    content:"";
+    position:absolute;
+    left:18px;
+    top:0;
+    bottom:0;
+    width:1px;
+    background:rgba(0,255,156,.2);
+}
+
+.timeline-item{
+    position:relative;
+    padding-left:55px;
+    margin-bottom:35px;
+}
+
+.timeline-dot{
+    position:absolute;
+    left:10px;
+    top:5px;
+
+    width:17px;
+    height:17px;
+
+    border:2px solid var(--green);
+    border-radius:50%;
+
+    background:#020609;
+
+    box-shadow:0 0 15px rgba(0,255,156,.4);
+}
+
+.timeline-item h3{
+    font-size:18px;
+}
+
+.timeline-item .date{
+    color:var(--green);
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px;
+    margin:5px 0 10px;
+}
+
+.timeline-item p{
+    color:var(--muted);
+    line-height:1.7;
+}
+
+/* ================= CONTACT ================= */
+
+.contact-box{
+    max-width:850px;
+    margin:auto;
+    text-align:center;
+    padding:55px 30px;
+}
+
+.contact-box h2{
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+.contact-box p{
+    color:var(--muted);
+    max-width:600px;
+    margin:auto;
+    line-height:1.8;
+}
+
+.socials{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:30px;
+}
+
+.social{
+    padding:11px 17px;
+    border:1px solid var(--border);
+    border-radius:8px;
+    font-family:"JetBrains Mono",monospace;
+    font-size:12px;
+    transition:.3s;
+}
+
+.social:hover{
+    color:var(--green);
+    border-color:var(--green);
+    transform:translateY(-3px);
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    border-top:1px solid rgba(0,255,156,.08);
+    padding:25px;
+    text-align:center;
+    color:#60746f;
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px;
+}
+
+/* ================= REVEAL ================= */
+
+.reveal{
+    opacity:0;
+    transform:translateY(30px);
+    transition:opacity .8s ease,transform .8s ease;
+}
+
+.reveal.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* ================= ADMIN ================= */
+
+.admin-page{
+    display:none;
+    min-height:100vh;
+    background:#020609;
+    padding:100px 20px 60px;
+}
+
+.admin-page.active{
+    display:block;
+}
+
+.admin-login{
+    width:min(430px,100%);
+    margin:70px auto;
+    padding:35px;
+}
+
+.admin-login h2{
+    margin-bottom:10px;
+}
+
+.admin-login p{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.6;
+    margin-bottom:25px;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group label{
+    display:block;
+    color:#8ba9a2;
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px;
+    margin-bottom:7px;
+}
+
+.form-group input,
+.form-group textarea{
+    width:100%;
+
+    background:#050c10;
+    color:white;
+
+    border:1px solid rgba(0,255,156,.14);
+    border-radius:8px;
+
+    padding:12px;
+
+    outline:none;
+}
+
+.form-group textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+    border-color:var(--green);
+}
+
+.admin-dashboard{
+    display:none;
+}
+
+.admin-dashboard.active{
+    display:block;
+}
+
+.admin-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    margin-bottom:30px;
+}
+
+.admin-top h1{
+    font-size:30px;
+}
+
+.admin-top p{
+    color:var(--muted);
+    font-family:"JetBrains Mono",monospace;
+    font-size:12px;
+}
+
+.admin-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.admin-box{
+    padding:25px;
+}
+
+.admin-box h3{
+    margin-bottom:20px;
+}
+
+.admin-project-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.admin-project{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+
+    padding:14px;
+
+    border:1px solid rgba(0,255,156,.10);
+    border-radius:8px;
+
+    background:rgba(0,255,156,.02);
+}
+
+.admin-project strong{
+    font-size:13px;
+}
+
+.admin-project small{
+    display:block;
+    color:#637b75;
+    margin-top:4px;
+}
+
+.admin-actions{
+    display:flex;
+    gap:7px;
+}
+
+.small-btn{
+    padding:7px 10px;
+    border-radius:6px;
+    border:1px solid rgba(0,255,156,.15);
+    background:transparent;
+    color:#a6c9c0;
+    cursor:pointer;
+    font-size:11px;
+}
+
+.small-btn:hover{
+    color:var(--green);
+    border-color:var(--green);
+}
+
+.small-btn.delete:hover{
+    color:var(--danger);
+    border-color:var(--danger);
+}
+
+.file-list{
+    margin-top:20px;
+}
+
+.file-item{
+    padding:12px;
+    border:1px solid rgba(0,255,156,.08);
+    border-radius:8px;
+    margin-bottom:9px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.file-item span{
+    font-size:12px;
+    color:#a7c5be;
+}
+
+.file-item a{
+    color:var(--green);
+    font-size:11px;
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+
+    padding:13px 18px;
+
+    background:#091519;
+    border:1px solid var(--green);
+    color:white;
+
+    border-radius:8px;
+
+    transform:translateY(100px);
+    opacity:0;
+
+    transition:.3s;
+
+    z-index:9999;
+
+    font-size:13px;
+}
+
+.toast.show{
+    transform:translateY(0);
+    opacity:1;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+
+    .hero-grid,
+    .about-grid,
+    .admin-grid{
+        grid-template-columns:1fr;
+    }
+
+    .skills-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .projects-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .nav-links{
+        display:none;
+        position:absolute;
+        top:72px;
+        left:0;
+        width:100%;
+
+        background:#03090c;
+
+        flex-direction:column;
+        padding:25px;
+    }
+
+    .nav-links.open{
+        display:flex;
+    }
+
+    .menu{
+        display:block;
+    }
+
+}
+
+@media(max-width:600px){
+
+    section{
+        padding:80px 0;
+    }
+
+    .hero h1{
+        letter-spacing:-2px;
+    }
+
+    .skills-grid,
+    .projects-grid{
+        grid-template-columns:1fr;
+    }
+
+    .info-list{
+        grid-template-columns:1fr;
+    }
+
+    .section-title h2{
+        font-size:32px;
+    }
+
+    .contact-box h2{
+        font-size:30px;
+    }
+
+    .code{
+        font-size:10px;
+        padding:15px;
+    }
+
+}
+
+</style>
 </head>
 
 <body>
 
-    <!-- Navigation -->
-    <nav>
-        <h2>Pranto K. Biswas</h2>
+<canvas id="matrix"></canvas>
 
-        <div>
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-        </div>
-    </nav>
+<div class="grid-bg"></div>
+
+<div class="glow one"></div>
+<div class="glow two"></div>
 
 
-    <!-- Home -->
-    <section class="hero" id="home">
+<!-- ================= PORTFOLIO ================= -->
 
-        <div class="hero-content">
+<div id="portfolio">
 
-            <h1>Hi, I'm Pranto K. Biswas</h1>
+<nav>
 
-            <h3>CSE Student | Web Developer | Aspiring Software Engineer</h3>
+<div class="nav-inner">
+
+<a href="#home" class="logo">
+<span>&lt;</span>Pranto<span>/&gt;</span>
+</a>
+
+<div class="nav-links" id="navLinks">
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#projects">Projects</a>
+<a href="#journey">Journey</a>
+<a href="#contact">Contact</a>
+</div>
+
+<div class="menu" onclick="toggleMenu()">☰</div>
+
+</div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+<div class="container">
+
+<div class="hero-grid">
+
+<div class="reveal">
+
+<div class="terminal-label">
+<span class="dot"></span>
+~/PrantoPortfolio $ whoami
+</div>
+
+<h1>
+Pranto K.<br>
+<span>Biswas</span>
+</h1>
+
+<div class="typing" id="typing"></div>
+
+<p class="hero-text">
+CSE student and aspiring software engineer passionate about
+web development, cybersecurity, AI & Data Science, and building
+creative digital solutions.
+</p>
+
+<div class="buttons">
+
+<a class="btn primary" href="#projects">
+View Projects →
+</a>
+
+<a class="btn secondary" href="https://github.com/PrantoScript" target="_blank">
+GitHub ↗
+</a>
+
+</div>
+
+</div>
+
+
+<div class="computer-wrap reveal">
+
+<div class="computer" id="computer">
+
+<div class="monitor">
+
+<div class="monitor-top">
+<span class="circle"></span>
+<span class="circle"></span>
+<span class="circle"></span>
+</div>
+
+<div class="code">
+
+<div><span class="purple">const</span> <span class="blue">developer</span> = {</div>
+
+<div>&nbsp;&nbsp;name:
+<span class="green">"Pranto K. Biswas"</span>,</div>
+
+<div>&nbsp;&nbsp;role:
+<span class="green">"Software Engineer"</span>,</div>
+
+<div>&nbsp;&nbsp;education:
+<span class="green">"CSE @ GUB"</span>,</div>
+
+<div>&nbsp;&nbsp;focus: [</div>
+
+<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="yellow">"Web Development"</span>,</div>
+
+<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="yellow">"Cyber Security"</span>,</div>
+
+<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="yellow">"AI & Data Science"</span></div>
+
+<div>&nbsp;&nbsp;]</div>
+
+<div>};</div>
+
+<br>
+
+<div>
+<span class="purple">console</span>.<span class="blue">log</span>(
+<span class="green">"Let's build something."</span>
+);
+</div>
+
+</div>
+
+</div>
+
+<div class="monitor-stand"></div>
+<div class="monitor-base"></div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section id="about">
+
+<div class="container">
+
+<div class="section-title reveal">
+<div class="mini">// about_me</div>
+<h2>Who Am I?</h2>
+<p>A little bit about the person behind the code.</p>
+</div>
+
+
+<div class="about-grid">
+
+<div class="card profile-card reveal">
+
+<div class="avatar">👨‍💻</div>
+
+<h3>Pranto K. Biswas</h3>
+
+<div class="role">
+CSE STUDENT • DEVELOPER
+</div>
+
+<div class="buttons" style="justify-content:center">
+
+<a class="btn secondary" href="mailto:prantobiswas060@gmail.com">
+Email Me
+</a>
+
+</div>
+
+</div>
+
+
+<div class="card about-text reveal">
+
+<h3>Building. Learning. Experimenting.</h3>
+
+<p>
+I'm a Computer Science & Engineering student at
+Green University of Bangladesh with a strong interest in
+software development, web technologies, cybersecurity,
+AI and Data Science.
+</p>
+
+<p>
+I enjoy turning ideas into practical projects and continuously
+learning new technologies. My goal is to grow as a software
+engineer and build useful products that solve real problems.
+</p>
+
+
+<div class="info-list">
+
+<div class="info">
+<small>University</small>
+<strong>Green University of Bangladesh</strong>
+</div>
+
+<div class="info">
+<small>Department</small>
+<strong>Computer Science & Engineering</strong>
+</div>
+
+<div class="info">
+<small>Focus</small>
+<strong>Software Engineering</strong>
+</div>
+
+<div class="info">
+<small>Interests</small>
+<strong>AI • Data Science • Security</strong>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SKILLS -->
+
+<section id="skills">
+
+<div class="container">
+
+<div class="section-title reveal">
+<div class="mini">// tech_stack</div>
+<h2>My Skills</h2>
+<p>Technologies I'm learning and working with.</p>
+</div>
+
+
+<div class="skills-grid">
+
+<div class="card skill reveal">
+<div class="skill-icon">☕</div>
+<h3>Java</h3>
+<p>Programming & OOP</p>
+</div>
+
+<div class="card skill reveal">
+<div class="skill-icon">🌐</div>
+<h3>HTML / CSS</h3>
+<p>Modern Web Design</p>
+</div>
+
+<div class="card skill reveal">
+<div class="skill-icon">⚡</div>
+<h3>JavaScript</h3>
+<p>Interactive Web Apps</p>
+</div>
+
+<div class="card skill reveal">
+<div class="skill-icon">🐘</div>
+<h3>PHP / MySQL</h3>
+<p>Backend Development</p>
+</div>
+
+<div class="card skill reveal">
+<div class="skill-icon">🐍</div>
+<h3>Python</h3>
+<p>AI & Data Science</p>
+</div>
+
+<div class="card skill reveal">
+<div class="skill-icon">🛡️</div>
+<h3>Cyber Security</h3>
+<p>Security Fundamentals</p>
+</div>
+
+<div class="card skill reveal">
+<div class="skill-icon">📊</div>
+<h3>Excel</h3>
+<p>Data & Productivity</p>
+</div>
+
+<div class="card skill reveal">
+<div class="skill-icon">🤖</div>
+<h3>AI Tools</h3>
+<p>Modern AI Workflow</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PROJECTS -->
+
+<section id="projects">
+
+<div class="container">
+
+<div class="section-title reveal">
+<div class="mini">// selected_work</div>
+<h2>My Projects</h2>
+<p>Things I've built while learning and experimenting.</p>
+</div>
+
+<div class="projects-grid" id="projectGrid"></div>
+
+</div>
+
+</section>
+
+
+<!-- JOURNEY -->
+
+<section id="journey">
+
+<div class="container">
+
+<div class="section-title reveal">
+<div class="mini">// timeline</div>
+<h2>My Journey</h2>
+<p>The road is still being written.</p>
+</div>
+
+
+<div class="timeline">
+
+<div class="timeline-item reveal">
+
+<div class="timeline-dot"></div>
+
+<h3>B.Sc. in Computer Science & Engineering</h3>
+
+<div class="date">GREEN UNIVERSITY OF BANGLADESH</div>
+
+<p>
+Studying computer science while exploring programming,
+web development, software engineering and emerging technologies.
+</p>
+
+</div>
+
+
+<div class="timeline-item reveal">
+
+<div class="timeline-dot"></div>
+
+<h3>Web Development</h3>
+
+<div class="date">LEARNING & PROJECTS</div>
+
+<p>
+Building websites and applications using HTML, CSS,
+JavaScript, PHP and MySQL.
+</p>
+
+</div>
+
+
+<div class="timeline-item reveal">
+
+<div class="timeline-dot"></div>
+
+<h3>AI & Data Science</h3>
+
+<div class="date">CURRENT FOCUS</div>
+
+<p>
+Exploring Python, data analysis, machine learning concepts
+and practical AI applications.
+</p>
+
+</div>
+
+
+<div class="timeline-item reveal">
+
+<div class="timeline-dot"></div>
+
+<h3>Future Software Engineer</h3>
+
+<div class="date">NEXT LEVEL</div>
+
+<p>
+Continuously improving my technical skills and working
+towards becoming a professional software engineer.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+<div class="container">
+
+<div class="card contact-box reveal">
+
+<div class="section-title" style="margin-bottom:10px">
+
+<div class="mini">// contact</div>
+
+<h2>Let's Connect</h2>
+
+</div>
+
+<p>
+Have an idea, project, collaboration opportunity,
+or just want to talk about technology?
+Feel free to reach out.
+</p>
+
+
+<div class="socials">
+
+<a class="social"
+href="mailto:prantobiswas060@gmail.com">
+Email
+</a>
+
+<a class="social"
+href="https://github.com/PrantoScript"
+target="_blank">
+GitHub
+</a>
+
+<a class="social"
+href="https://www.linkedin.com/"
+target="_blank">
+LinkedIn
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<footer>
+
+© 2026 Pranto K. Biswas • Built with code & curiosity.
+
+</footer>
+
+</div>
+
+
+<!-- ================= ADMIN PAGE ================= -->
+
+<div class="admin-page" id="adminPage">
+
+<div class="container">
+
+
+<!-- LOGIN -->
+
+<div class="card admin-login" id="adminLogin">
+
+<div class="terminal-label">
+<span class="dot"></span>
+~/admin $ login
+</div>
+
+<h2>Admin Access</h2>
+
+<p>
+Portfolio management dashboard. Enter the administrator
+password to continue.
+</p>
+
+<div class="form-group">
+
+<label>Password</label>
+
+<input
+type="password"
+id="adminPassword"
+placeholder="Enter password"
+onkeydown="if(event.key==='Enter') loginAdmin()"
+>
+
+</div>
+
+<button class="btn primary" onclick="loginAdmin()">
+Access Dashboard
+</button>
+
+</div>
+
+
+<!-- DASHBOARD -->
+
+<div class="admin-dashboard" id="adminDashboard">
+
+<div class="admin-top">
+
+<div>
+
+<h1>⚡ Admin Dashboard</h1>
+
+<p>~/PrantoPortfolio/admin</p>
+
+</div>
+
+<button class="btn secondary" onclick="logoutAdmin()">
+Exit Admin
+</button>
+
+</div>
+
+
+<div class="admin-grid">
+
+
+<!-- ADD PROJECT -->
+
+<div class="card admin-box">
+
+<h3>➕ Add / Edit Project</h3>
+
+<input type="hidden" id="editId">
+
+
+<div class="form-group">
+<label>Project Title</label>
+<input id="projectTitle" placeholder="Example: My New Project">
+</div>
+
+
+<div class="form-group">
+<label>Description</label>
+<textarea id="projectDescription"
+placeholder="Describe your project..."></textarea>
+</div>
+
+
+<div class="form-group">
+<label>Technologies</label>
+<input id="projectTech"
+placeholder="HTML, CSS, JavaScript">
+</div>
+
+
+<div class="form-group">
+<label>GitHub URL</label>
+<input id="projectGithub"
+placeholder="https://github.com/...">
+</div>
+
+
+<div class="form-group">
+<label>Live Demo URL</label>
+<input id="projectDemo"
+placeholder="https://...">
+</div>
+
+
+<button class="btn primary" onclick="saveProject()">
+Save Project
+</button>
+
+<button
+class="btn secondary"
+onclick="clearProjectForm()"
+style="margin-left:7px">
+Clear
+</button>
+
+</div>
+
+
+<!-- PROJECT LIST -->
+
+<div class="card admin-box">
+
+<h3>📦 Manage Projects</h3>
+
+<div
+class="admin-project-list"
+id="adminProjectList">
+</div>
+
+</div>
+
+
+<!-- FILE UPLOAD -->
+
+<div class="card admin-box">
+
+<h3>📁 File Vault</h3>
+
+<p style="color:#708c84;font-size:12px;line-height:1.6;margin-bottom:20px">
+
+Add files from your computer. Files are stored locally in this
+browser using IndexedDB. Later we can connect this to a real
+backend so files become publicly available.
+
+</p>
+
+
+<div class="form-group">
+
+<label>Select File</label>
+
+<input
+type="file"
+id="fileInput"
+>
+
+</div>
+
+
+<button class="btn primary" onclick="uploadFile()">
+Upload File
+</button>
+
+
+<div class="file-list" id="fileList"></div>
+
+</div>
+
+
+<!-- INFO -->
+
+<div class="card admin-box">
+
+<h3>🖥️ System Info</h3>
+
+<div class="info-list">
+
+<div class="info">
+<small>Projects</small>
+<strong id="projectCount">0</strong>
+</div>
+
+<div class="info">
+<small>Storage</small>
+<strong>Browser Local</strong>
+</div>
+
+<div class="info">
+<small>Mode</small>
+<strong>GitHub Pages</strong>
+</div>
+
+<div class="info">
+<small>Version</small>
+<strong>Cyber v3.0</strong>
+</div>
+
+</div>
+
+<br>
+
+<p style="color:#657c76;font-size:11px;line-height:1.7">
+
+⚠️ This admin panel is a frontend demo.
+Do not use the client-side password for sensitive/private
+information. For a real secure dashboard, connect a backend
+authentication system later.
+
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+/* =====================================================
+   MATRIX BACKGROUND
+===================================================== */
+
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+let fontSize = 14;
+let columns;
+let drops;
+
+const chars =
+"01ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz<>[]{}#$%&@";
+
+function setupMatrix(){
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    columns = Math.floor(canvas.width / fontSize);
+
+    drops = Array(columns).fill(1);
+}
+
+function drawMatrix(){
+
+    ctx.fillStyle = "rgba(2,6,9,0.08)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    ctx.fillStyle = "#00ff9c";
+    ctx.font = fontSize + "px JetBrains Mono";
+
+    for(let i=0;i<drops.length;i++){
+
+        const text =
+            chars[Math.floor(Math.random()*chars.length)];
+
+        ctx.fillText(
+            text,
+            i*fontSize,
+            drops[i]*fontSize
+        );
+
+        if(
+            drops[i]*fontSize > canvas.height &&
+            Math.random() > .975
+        ){
+            drops[i] = 0;
+        }
+
+        drops[i]++;
+    }
+}
+
+setupMatrix();
+
+setInterval(drawMatrix,45);
+
+window.addEventListener("resize",setupMatrix);
+
+
+/* =====================================================
+   TYPING EFFECT
+===================================================== */
+
+const typingElement =
+document.getElementById("typing");
+
+const roles = [
+    "Computer Science & Engineering Student",
+    "Aspiring Software Engineer",
+    "Web Developer",
+    "AI & Data Science Enthusiast",
+    "Cyber Security Learner"
+];
+
+let roleIndex = 0;
+let charIndex = 0;
+let deleting = false;
+
+function typing(){
+
+    const current = roles[roleIndex];
+
+    if(!deleting){
+
+        typingElement.textContent =
+            current.substring(0,charIndex++);
+
+        if(charIndex > current.length){
+
+            deleting = true;
+
+            setTimeout(typing,1200);
+
+            return;
+        }
+
+    }else{
+
+        typingElement.textContent =
+            current.substring(0,charIndex--);
+
+        if(charIndex < 0){
+
+            deleting = false;
+            roleIndex =
+                (roleIndex + 1) % roles.length;
+
+            charIndex = 0;
+        }
+    }
+
+    setTimeout(
+        typing,
+        deleting ? 35 : 70
+    );
+}
+
+typing();
+
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+function toggleMenu(){
+
+    document
+        .getElementById("navLinks")
+        .classList.toggle("open");
+}
+
+
+/* =====================================================
+   SCROLL REVEAL
+===================================================== */
+
+const observer =
+new IntersectionObserver(
+(entries)=>{
+    entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+            entry.target.classList.add("show");
+        }
+
+    });
+},
+{
+    threshold:.12
+});
+
+document
+.querySelectorAll(".reveal")
+.forEach(el=>observer.observe(el));
+
+
+/* =====================================================
+   COMPUTER 3D EFFECT
+===================================================== */
+
+const computer =
+document.getElementById("computer");
+
+document.addEventListener("mousemove",(e)=>{
+
+    if(window.innerWidth < 800) return;
+
+    const x =
+        (window.innerWidth/2 - e.clientX) / 100;
+
+    const y =
+        (window.innerHeight/2 - e.clientY) / 100;
+
+    computer.style.transform =
+        `rotateY(${x}deg) rotateX(${-y}deg)`;
+});
+
+
+/* =====================================================
+   DEFAULT PROJECTS
+===================================================== */
+
+const defaultProjects = [
+
+{
+    id:Date.now()+1,
+    title:"Break Management System",
+    description:
+        "A web-based system for managing employee break requests, approvals, timers and reports.",
+    tech:["Google Sheets","Apps Script","HTML","CSS","JavaScript"],
+    github:"https://github.com/PrantoScript",
+    demo:"#"
+},
+
+{
+    id:Date.now()+2,
+    title:"StepQuest",
+    description:
+        "A Java Swing maze game using BFS and DFS concepts for pathfinding and navigation.",
+    tech:["Java","Swing","BFS","DFS"],
+    github:"https://github.com/PrantoScript",
+    demo:"#"
+},
+
+{
+    id:Date.now()+3,
+    title:"Agriculture Farm Management",
+    description:
+        "A PHP and MySQL based system designed to manage agricultural farm information.",
+    tech:["PHP","MySQL","HTML","CSS"],
+    github:"https://github.com/PrantoScript",
+    demo:"#"
+}
+
+];
+
+
+function getProjects(){
+
+    const saved =
+        localStorage.getItem("prantoProjects");
+
+    if(saved){
+
+        return JSON.parse(saved);
+
+    }
+
+    localStorage.setItem(
+        "prantoProjects",
+        JSON.stringify(defaultProjects)
+    );
+
+    return defaultProjects;
+}
+
+
+/* =====================================================
+   RENDER PROJECTS
+===================================================== */
+
+function renderProjects(){
+
+    const projects =
+        getProjects();
+
+    const grid =
+        document.getElementById("projectGrid");
+
+    grid.innerHTML = "";
+
+    projects.forEach((project,index)=>{
+
+        const tags =
+            project.tech
+            .map(item =>
+                `<span class="tag">${escapeHTML(item)}</span>`
+            )
+            .join("");
+
+        const github =
+            project.github
+            ? `<a href="${safeURL(project.github)}" target="_blank">GitHub ↗</a>`
+            : "";
+
+        const demo =
+            project.demo
+            ? `<a href="${safeURL(project.demo)}" target="_blank">Live Demo ↗</a>`
+            : "";
+
+        const card =
+        document.createElement("div");
+
+        card.className =
+            "card project reveal";
+
+        card.innerHTML = `
+
+            <div class="project-number">
+                PROJECT_${String(index+1).padStart(2,"0")}
+            </div>
+
+            <h3>${escapeHTML(project.title)}</h3>
 
             <p>
-                Welcome to my personal portfolio website.
-                I am passionate about technology, software development,
-                AI and Data Science.
+                ${escapeHTML(project.description)}
             </p>
 
-            <a href="#about" class="btn">Explore My Portfolio</a>
+            <div class="tags">
+                ${tags}
+            </div>
 
-            <a href="https://github.com/PrantoScript"
-               target="_blank"
-               class="btn">
-                GitHub
-            </a>
+            <div class="project-links">
+                ${github}
+                ${demo}
+            </div>
 
-        </div>
+        `;
 
-    </section>
+        grid.appendChild(card);
 
+        observer.observe(card);
 
-    <!-- About -->
-    <section id="about">
-
-        <h2>About Me</h2>
-
-        <div class="about">
-
-            <p>
-                I am a Computer Science and Engineering student at
-                Green University of Bangladesh.
-                I am interested in software development, web development,
-                Artificial Intelligence and Data Science.
-            </p>
-
-            <br>
-
-            <p>
-                My goal is to continuously improve my technical skills
-                and build useful software projects.
-            </p>
-
-        </div>
-
-    </section>
+    });
+}
 
 
-    <!-- Skills -->
-    <section id="skills">
+/* =====================================================
+   ADMIN LOGIN
+===================================================== */
 
-        <h2>My Skills</h2>
-
-        <div class="skills">
-
-            <div class="skill">Java</div>
-            <div class="skill">HTML</div>
-            <div class="skill">CSS</div>
-            <div class="skill">JavaScript</div>
-            <div class="skill">Web Development</div>
-            <div class="skill">AI & Data Science</div>
-            <div class="skill">Git & GitHub</div>
-            <div class="skill">Digital Marketing</div>
-
-        </div>
-
-    </section>
+const ADMIN_PASSWORD =
+"pranto123";
 
 
-    <!-- Projects -->
-    <section id="projects">
+function loginAdmin(){
 
-        <h2>My Projects</h2>
+    const password =
+        document.getElementById("adminPassword").value;
 
-        <div class="projects">
+    if(password === ADMIN_PASSWORD){
 
-            <div class="project">
+        document
+        .getElementById("adminLogin")
+        .style.display="none";
 
-                <h3>Break Management System</h3>
+        document
+        .getElementById("adminDashboard")
+        .classList.add("active");
 
-                <p>
-                    A web-based system for managing employee
-                    break requests, approvals and break history.
-                </p>
+        renderAdminProjects();
+        updateProjectCount();
+        loadFiles();
+
+        showToast("Admin access granted ✓");
+
+    }else{
+
+        showToast("Wrong password!");
+
+    }
+}
+
+
+function logoutAdmin(){
+
+    document
+    .getElementById("adminLogin")
+    .style.display="block";
+
+    document
+    .getElementById("adminDashboard")
+    .classList.remove("active");
+
+    document.getElementById("adminPassword").value="";
+
+    location.hash="";
+
+}
+
+
+/* =====================================================
+   ADMIN ROUTE
+===================================================== */
+
+function checkAdminRoute(){
+
+    const isAdmin =
+        location.hash.toLowerCase() === "#admin";
+
+    const portfolio =
+        document.getElementById("portfolio");
+
+    const admin =
+        document.getElementById("adminPage");
+
+    if(isAdmin){
+
+        portfolio.style.display="none";
+        admin.classList.add("active");
+
+    }else{
+
+        portfolio.style.display="block";
+        admin.classList.remove("active");
+
+    }
+}
+
+window.addEventListener("hashchange",checkAdminRoute);
+
+checkAdminRoute();
+
+
+/* =====================================================
+   SAVE PROJECT
+===================================================== */
+
+function saveProject(){
+
+    const title =
+        document.getElementById("projectTitle").value.trim();
+
+    const description =
+        document.getElementById("projectDescription").value.trim();
+
+    const tech =
+        document.getElementById("projectTech").value
+        .split(",")
+        .map(x=>x.trim())
+        .filter(Boolean);
+
+    const github =
+        document.getElementById("projectGithub").value.trim();
+
+    const demo =
+        document.getElementById("projectDemo").value.trim();
+
+    const editId =
+        document.getElementById("editId").value;
+
+
+    if(!title || !description){
+
+        showToast("Title and description required!");
+
+        return;
+    }
+
+
+    let projects =
+        getProjects();
+
+
+    if(editId){
+
+        projects =
+            projects.map(project=>{
+
+                if(String(project.id) === String(editId)){
+
+                    return {
+                        ...project,
+                        title,
+                        description,
+                        tech,
+                        github,
+                        demo
+                    };
+
+                }
+
+                return project;
+
+            });
+
+        showToast("Project updated ✓");
+
+    }else{
+
+        projects.push({
+
+            id:Date.now(),
+
+            title,
+            description,
+            tech,
+            github,
+            demo
+
+        });
+
+        showToast("Project added ✓");
+
+    }
+
+
+    localStorage.setItem(
+        "prantoProjects",
+        JSON.stringify(projects)
+    );
+
+
+    clearProjectForm();
+
+    renderProjects();
+
+    renderAdminProjects();
+
+    updateProjectCount();
+}
+
+
+/* =====================================================
+   ADMIN PROJECT LIST
+===================================================== */
+
+function renderAdminProjects(){
+
+    const list =
+        document.getElementById("adminProjectList");
+
+    if(!list) return;
+
+    const projects =
+        getProjects();
+
+    list.innerHTML="";
+
+
+    projects.forEach(project=>{
+
+        const item =
+            document.createElement("div");
+
+        item.className="admin-project";
+
+        item.innerHTML=`
+
+            <div>
+
+                <strong>
+                    ${escapeHTML(project.title)}
+                </strong>
+
+                <small>
+                    ${(project.tech || []).join(" • ")}
+                </small>
 
             </div>
 
+            <div class="admin-actions">
 
-            <div class="project">
+                <button
+                    class="small-btn"
+                    onclick="editProject(${project.id})">
+                    Edit
+                </button>
 
-                <h3>StepQuest</h3>
-
-                <p>
-                    A Java Swing maze project using
-                    BFS and DFS algorithms.
-                </p>
-
-            </div>
-
-
-            <div class="project">
-
-                <h3>Agriculture Farm Management</h3>
-
-                <p>
-                    A PHP and MySQL based system for
-                    managing agriculture farm information.
-                </p>
+                <button
+                    class="small-btn delete"
+                    onclick="deleteProject(${project.id})">
+                    Delete
+                </button>
 
             </div>
 
-        </div>
+        `;
 
-    </section>
+        list.appendChild(item);
 
+    });
 
-    <!-- Contact -->
-    <section id="contact">
-
-        <h2>Contact Me</h2>
-
-        <div class="contact">
-
-            <p>Email:
-                <a href="mailto:prantobiswas060@gmail.com">
-                    prantobiswas060@gmail.com
-                </a>
-            </p>
-
-            <p>
-                GitHub:
-                <a href="https://github.com/PrantoScript"
-                   target="_blank">
-                    github.com/PrantoScript
-                </a>
-            </p>
-
-            <p>
-                LinkedIn:
-                <a href="https://www.linkedin.com/"
-                   target="_blank">
-                    LinkedIn Profile
-                </a>
-            </p>
-
-        </div>
-
-    </section>
+}
 
 
-    <!-- Footer -->
-    <footer>
+/* =====================================================
+   EDIT PROJECT
+===================================================== */
 
-        <p>
-            © 2026 Pranto K. Biswas. All Rights Reserved.
-        </p>
+function editProject(id){
 
-    </footer>
+    const project =
+        getProjects()
+        .find(p=>String(p.id)===String(id));
+
+    if(!project) return;
+
+    document.getElementById("editId").value =
+        project.id;
+
+    document.getElementById("projectTitle").value =
+        project.title;
+
+    document.getElementById("projectDescription").value =
+        project.description;
+
+    document.getElementById("projectTech").value =
+        (project.tech || []).join(", ");
+
+    document.getElementById("projectGithub").value =
+        project.github || "";
+
+    document.getElementById("projectDemo").value =
+        project.demo || "";
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =====================================================
+   DELETE PROJECT
+===================================================== */
+
+function deleteProject(id){
+
+    if(!confirm("Delete this project?")) return;
+
+    let projects =
+        getProjects();
+
+    projects =
+        projects.filter(
+            p=>String(p.id)!==String(id)
+        );
+
+    localStorage.setItem(
+        "prantoProjects",
+        JSON.stringify(projects)
+    );
+
+    renderProjects();
+    renderAdminProjects();
+    updateProjectCount();
+
+    showToast("Project deleted");
+}
+
+
+/* =====================================================
+   CLEAR FORM
+===================================================== */
+
+function clearProjectForm(){
+
+    document.getElementById("editId").value="";
+    document.getElementById("projectTitle").value="";
+    document.getElementById("projectDescription").value="";
+    document.getElementById("projectTech").value="";
+    document.getElementById("projectGithub").value="";
+    document.getElementById("projectDemo").value="";
+
+}
+
+
+/* =====================================================
+   PROJECT COUNT
+===================================================== */
+
+function updateProjectCount(){
+
+    const element =
+        document.getElementById("projectCount");
+
+    if(element){
+
+        element.textContent =
+            getProjects().length;
+
+    }
+}
+
+
+/* =====================================================
+   INDEXED DB FILE STORAGE
+===================================================== */
+
+let db;
+
+function openDB(){
+
+    return new Promise((resolve,reject)=>{
+
+        const request =
+            indexedDB.open("PrantoPortfolioFiles",1);
+
+        request.onupgradeneeded =
+        function(event){
+
+            db =
+                event.target.result;
+
+            if(!db.objectStoreNames.contains("files")){
+
+                db.createObjectStore(
+                    "files",
+                    {keyPath:"id",autoIncrement:true}
+                );
+
+            }
+
+        };
+
+
+        request.onsuccess =
+        function(event){
+
+            db =
+                event.target.result;
+
+            resolve(db);
+
+        };
+
+
+        request.onerror =
+        function(){
+
+            reject(request.error);
+
+        };
+
+    });
+
+}
+
+
+openDB();
+
+
+/* =====================================================
+   UPLOAD FILE
+===================================================== */
+
+async function uploadFile(){
+
+    const input =
+        document.getElementById("fileInput");
+
+    if(!input.files.length){
+
+        showToast("Select a file first!");
+
+        return;
+    }
+
+
+    const file =
+        input.files[0];
+
+
+    try{
+
+        const database =
+            await openDB();
+
+        const transaction =
+            database.transaction(
+                ["files"],
+                "readwrite"
+            );
+
+        const store =
+            transaction.objectStore("files");
+
+
+        store.add({
+
+            name:file.name,
+            type:file.type,
+            size:file.size,
+            data:file
+
+        });
+
+
+        transaction.oncomplete =
+        function(){
+
+            input.value="";
+
+            loadFiles();
+
+            showToast("File added ✓");
+
+        };
+
+
+    }catch(error){
+
+        console.error(error);
+
+        showToast("File upload failed");
+
+    }
+
+}
+
+
+/* =====================================================
+   LOAD FILES
+===================================================== */
+
+async function loadFiles(){
+
+    const list =
+        document.getElementById("fileList");
+
+    if(!list) return;
+
+    try{
+
+        const database =
+            await openDB();
+
+        const transaction =
+            database.transaction(
+                ["files"],
+                "readonly"
+            );
+
+        const store =
+            transaction.objectStore("files");
+
+        const request =
+            store.getAll();
+
+
+        request.onsuccess =
+        function(){
+
+            list.innerHTML="";
+
+            request.result.forEach(file=>{
+
+                const row =
+                    document.createElement("div");
+
+                row.className="file-item";
+
+                row.innerHTML=`
+
+                    <span>
+                        📄 ${escapeHTML(file.name)}
+                    </span>
+
+                    <a href="#"
+                       onclick="downloadFile(${file.id});return false;">
+                        Download
+                    </a>
+
+                `;
+
+                list.appendChild(row);
+
+            });
+
+        };
+
+    }catch(error){
+
+        console.error(error);
+
+    }
+
+}
+
+
+/* =====================================================
+   DOWNLOAD FILE
+===================================================== */
+
+async function downloadFile(id){
+
+    const database =
+        await openDB();
+
+    const transaction =
+        database.transaction(
+            ["files"],
+            "readonly"
+        );
+
+    const store =
+        transaction.objectStore("files");
+
+    const request =
+        store.get(id);
+
+
+    request.onsuccess =
+    function(){
+
+        const item =
+            request.result;
+
+        if(!item) return;
+
+        const url =
+            URL.createObjectURL(item.data);
+
+        const a =
+            document.createElement("a");
+
+        a.href=url;
+        a.download=item.name;
+
+        document.body.appendChild(a);
+
+        a.click();
+
+        a.remove();
+
+        URL.revokeObjectURL(url);
+
+    };
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent=message;
+
+    toast.classList.add("show");
+
+    setTimeout(()=>{
+
+        toast.classList.remove("show");
+
+    },2500);
+
+}
+
+
+/* =====================================================
+   SECURITY HELPERS
+===================================================== */
+
+function escapeHTML(value){
+
+    return String(value || "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+function safeURL(url){
+
+    if(!url) return "#";
+
+    if(
+        url.startsWith("https://") ||
+        url.startsWith("http://") ||
+        url.startsWith("mailto:")
+    ){
+
+        return url;
+
+    }
+
+    return "#";
+
+}
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+renderProjects();
+
+updateProjectCount();
+
+</script>
 
 </body>
 </html>
