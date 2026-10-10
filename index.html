@@ -1806,67 +1806,6 @@ async function updateAIAuthStatus() {
 
 updateAIAuthStatus();
   
-/* Connect Pranto AI Login and Sign Up buttons */
-
-const aiAuthModal = document.getElementById("ai-auth-modal");
-const aiAuthTitle = document.getElementById("ai-auth-title");
-const aiAuthDescription = document.getElementById("ai-auth-description");
-const aiAuthSubmit = document.getElementById("ai-auth-submit");
-const aiAuthSwitch = document.getElementById("ai-auth-switch");
-const aiAuthStatus = document.getElementById("ai-auth-status");
-
-let aiAuthMode = "login";
-
-function openAIAuth(mode) {
-  aiAuthMode = mode;
-
-  aiAuthTitle.textContent =
-    mode === "signup" ? "Create your account" : "Welcome back";
-
-  aiAuthDescription.textContent =
-    mode === "signup"
-      ? "Create an account for your Pranto AI experience."
-      : "Log in to your Pranto AI account.";
-
-  aiAuthSubmit.textContent =
-    mode === "signup" ? "Create Account" : "Login";
-
-  aiAuthSwitch.textContent =
-    mode === "signup"
-      ? "Already have an account? Login"
-      : "Need an account? Sign up";
-
-  aiAuthStatus.textContent = "";
-  aiAuthModal.hidden = false;
-}
-
-
-document.getElementById("ai-open-login").addEventListener("click", () => {
-  window.location.href = "./login.html";
-});
-
-document.getElementById("ai-open-signup").addEventListener("click", () => {
-  window.location.href = "./login.html?mode=signup";
-});
-
-
-document.getElementById("ai-close-auth").addEventListener("click", () => {
-  aiAuthModal.hidden = true;
-});
-
-aiAuthSwitch.addEventListener("click", () => {
-  openAIAuth(aiAuthMode === "login" ? "signup" : "login");
-});
-
-aiAuthSubmit.addEventListener("click", async () => {
-  if (aiAuthMode === "signup") {
-    await aiSignUp();
-  } else {
-    await aiSignIn();
-  }
-});
-
-
 
 
 /* =========================================================
