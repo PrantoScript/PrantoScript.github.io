@@ -3339,6 +3339,79 @@ historyCloseButton.addEventListener("click", function () {
   historyCloseButton.hidden = true;
 });
 
+document.getElementById("ai-history-button").addEventListener("click", async function () {
+  const historyList = document.getElementById("ai-history-list");
+  const button = document.getElementById("ai-history-button");
+
+  button.textContent = "Loading...";
+
+  try {
+    const { data: { user }, error: authError } =
+      await supabaseClient.auth.getUser();
+
+    if (authError || !user) {
+      historyList.hidden = false;
+      historyList.textContent = "Please log in to view your history.";
+      return;
+    }
+
+    const { data, error } = await supabaseClient
+      .from("ai_chat_history")
+      .select("id, question, answer, created_at")
+      .eq("user_id", user.id)
+      .order("created_at", { ascending: false })
+      .limit(50);
+
+    if (error) throw error;
+
+    historyList.replaceChildren();
+    historyList.hidden = false;
+
+    if (!data || data.length === 0) {
+      historyList.textContent = "No chat history yet.";
+      return;
+    }
+
+    data.forEach(function (chat) {
+      const item = document.createElement("button");
+      item.type = "button";
+      item.className = "ai-history-item";
+      item.textContent = chat.question;
+      item.style.display = "block";
+      item.style.width = "100%";
+      item.style.textAlign = "left";
+      item.style.margin = "6px 0";
+      item.style.padding = "10px";
+
+      item.addEventListener("click", function () {
+        const messages = document.getElementById("ai-chat-messages");
+        messages.replaceChildren();
+
+        const questionBubble = document.createElement("div");
+        questionBubble.className = "ai-chat-bubble user";
+        questionBubble.textContent = chat.question;
+
+        const answerBubble = document.createElement("div");
+        answerBubble.className = "ai-chat-bubble assistant";
+        answerBubble.textContent = chat.answer;
+
+        messages.append(questionBubble, answerBubble);
+        messages.hidden = false;
+        document.getElementById("ai-chat-form").hidden = true;
+        historyList.hidden = true;
+      });
+
+      historyList.appendChild(item);
+    });
+  } catch (error) {
+    console.error("Could not load history:", error);
+    historyList.hidden = false;
+    historyList.textContent = "Could not load history. Please try again.";
+  } finally {
+    button.textContent = "◷ Chat History";
+  }
+});
+
 function addChatBubble(text, sender) {
   const bubble = document.createElement("div");
   bubble.className = "ai-chat-bubble " + sender;
