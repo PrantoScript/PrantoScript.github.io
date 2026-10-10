@@ -672,12 +672,72 @@
 .ai-assistant-heading h2 {
   margin: 0;
 }
+    .ai-app-layout {
+  display: flex;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0 16px;
+  align-items: flex-start;
+}
+
+#ai-chat-sidebar {
+  width: 250px;
+  flex-shrink: 0;
+  padding: 20px;
+  background: #f8fafc;
+  color: #1e293b;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+}
+
+#ai-chat-sidebar h3 {
+  margin-top: 0;
+}
+
+#new-ai-chat {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: #2563eb;
+  color: white;
+  cursor: pointer;
+}
+
+#ai-chat-history {
+  margin-top: 16px;
+  overflow-wrap: anywhere;
+}
+
+.ai-app-layout #ai-study-assistant {
+  flex: 1;
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+}
+
+@media (max-width: 700px) {
+  .ai-app-layout {
+    flex-direction: column;
+  }
+
+  #ai-chat-sidebar {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .ai-app-layout #ai-study-assistant {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
   </style>
   
 <style>
 #ai-study-assistant {
-  max-width: 760px;
-  margin: 50px auto;
+  max-width: 1100px;
+  margin: 30px auto;
   padding: 28px;
   background: #ffffff;
   color: #1e293b;
@@ -2510,6 +2570,14 @@ checkRoute();
 
 <!-- AI Study Assistant -->
 <section id="ai-study-assistant">
+  <div class="ai-app-layout">
+  <aside id="ai-chat-sidebar">
+    <h3>💬 Chat History</h3>
+    <button type="button" id="new-ai-chat">+ New Chat</button>
+    <div id="ai-chat-history">
+      <p>Your previous chats will appear here.</p>
+    </div>
+  </aside>
 <div class="ai-assistant-heading">
   <img src="pranto.jpeg" alt="Pranto" class="ai-assistant-avatar">
   <h2>Pranto AI Study Assistant</h2>
@@ -2529,8 +2597,9 @@ checkRoute();
       required
     >
     <button type="submit">Send</button>
-  </form>
+    </form>
 </section>
+</div>
 
 
 <script>
