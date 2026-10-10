@@ -3218,7 +3218,8 @@ const aiMessages = document.getElementById("ai-chat-messages");
   async function saveAIChatHistory(question, answer) {
   const { data: { user }, error: userError } =
     await supabaseClient.auth.getUser();
-
+console.log("Auth user:", user);
+console.log("Auth error:", userError);
   if (userError || !user) {
     console.log("Log in to save chat history.");
     return;
