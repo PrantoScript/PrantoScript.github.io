@@ -2664,35 +2664,117 @@ checkRoute();
 </div>
 
 <!-- AI Study Assistant -->
+
+<!-- Pranto AI Study Assistant -->
 <section id="ai-study-assistant">
   <div class="ai-app-layout">
-  <aside id="ai-chat-sidebar">
-    <h3>💬 Chat History</h3>
-    <button type="button" id="new-ai-chat">+ New Chat</button>
-    <div id="ai-chat-history">
-      <p>Your previous chats will appear here.</p>
-    </div>
-  </aside>
-<div class="ai-assistant-heading">
-  <img src="pranto.jpeg" alt="Pranto" class="ai-assistant-avatar">
-  <h2>Pranto AI Study Assistant</h2>
-</div>
-  <p>Ask questions and learn with AI.</p>
 
-  <div id="ai-chat-messages">
-    <p>Hi! Ask me anything about your studies.</p>
+    <!-- Sidebar -->
+    <aside id="ai-chat-sidebar">
+      <div class="ai-sidebar-brand">
+        <span class="ai-brand-icon">✦</span>
+        <div>
+          <strong>Pranto AI</strong>
+          <small>Study Assistant</small>
+        </div>
+      </div>
+
+      <button type="button" id="new-ai-chat">
+        <span>＋</span> New Chat
+      </button>
+
+      <p class="ai-sidebar-label">YOUR CONVERSATIONS</p>
+
+      <div id="ai-chat-history">
+        <p class="ai-empty-history">Your chats will appear here.</p>
+      </div>
+
+      <div class="ai-sidebar-bottom">
+        <span class="ai-status-dot"></span>
+        AI Study Assistant
+      </div>
+    </aside>
+
+    <!-- Main Chat -->
+    <div class="ai-main-panel">
+
+      <header class="ai-topbar">
+        <div class="ai-mobile-brand">
+          <span class="ai-brand-icon">✦</span>
+          <strong>Pranto AI</strong>
+        </div>
+
+        <div class="ai-auth-actions">
+          <button type="button" id="ai-open-login">Login</button>
+          <button type="button" id="ai-open-signup">Sign Up</button>
+        </div>
+      </header>
+
+      <div class="ai-chat-content">
+
+        <div class="ai-assistant-heading">
+          <img
+            src="pranto.jpeg"
+            alt="Pranto AI"
+            class="ai-assistant-avatar"
+          >
+          <div>
+            <h2>Pranto AI Study Assistant</h2>
+            <p><span class="ai-status-dot"></span> Ready to help you learn</p>
+          </div>
+        </div>
+
+        <div id="ai-chat-messages" aria-live="polite">
+          <div class="ai-welcome">
+            <div class="ai-welcome-icon">✦</div>
+            <h3>What are we learning today?</h3>
+            <p>Ask a question, explore a topic, or get help with your studies.</p>
+          </div>
+        </div>
+
+        <form id="ai-chat-form">
+          <input
+            type="text"
+            id="ai-question"
+            placeholder="Ask anything about your studies..."
+            maxlength="2000"
+            autocomplete="off"
+            required
+          >
+          <button type="submit" aria-label="Send message">↑</button>
+        </form>
+
+        <p class="ai-disclaimer">
+          Pranto AI can make mistakes. Verify important information.
+        </p>
+
+      </div>
+    </div>
   </div>
 
-  <form id="ai-chat-form">
-    <input
-      type="text"
-      id="ai-question"
-      placeholder="Ask your study question..."
-      maxlength="2000"
-      required
-    >
-    <button type="submit">Send</button>
-    </form>
+  <!-- Login / Sign Up Modal -->
+  <div id="ai-auth-modal" class="ai-auth-modal" hidden>
+    <div class="ai-auth-card">
+      <button type="button" id="ai-close-auth" class="ai-auth-close"
+        aria-label="Close">×</button>
+
+      <div class="ai-welcome-icon">✦</div>
+      <h3 id="ai-auth-title">Welcome back</h3>
+      <p id="ai-auth-description">Log in to your Pranto AI account.</p>
+
+      <label for="ai-auth-email">Email address</label>
+      <input id="ai-auth-email" type="email"
+        placeholder="you@example.com" autocomplete="email">
+
+      <label for="ai-auth-password">Password</label>
+      <input id="ai-auth-password" type="password"
+        placeholder="At least 6 characters" autocomplete="current-password">
+
+      <button type="button" id="ai-auth-submit">Login</button>
+      <p id="ai-auth-status" aria-live="polite"></p>
+      <button type="button" id="ai-auth-switch">Need an account? Sign up</button>
+    </div>
+  </div>
 </section>
 </div>
 
