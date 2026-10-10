@@ -3234,6 +3234,7 @@ const aiMessages = document.getElementById("ai-chat-messages");
 
   if (error) {
     console.error("Could not save chat history:", error);
+    console.error("Error details:", JSON.stringify(error, null, 2));
   }
 }
 
