@@ -3212,6 +3212,27 @@ checkRoute();
 const aiForm = document.getElementById("ai-chat-form");
 const aiQuestion = document.getElementById("ai-question");
 const aiMessages = document.getElementById("ai-chat-messages");
+  async function saveAIChatHistory(question, answer) {
+  const { data: { user }, error: userError } =
+    await supabaseClient.auth.getUser();
+
+  if (userError || !user) {
+    console.log("Log in to save chat history.");
+    return;
+  }
+
+  const { error } = await supabaseClient
+    .from("ai_chat_history")
+    .insert({
+      user_id: user.id,
+      question: question,
+      answer: answer
+    });
+
+  if (error) {
+    console.error("Could not save chat history:", error.message);
+  }
+}
 
 function addChatBubble(text, sender) {
   const bubble = document.createElement("div");
@@ -3262,6 +3283,8 @@ aiForm.addEventListener("submit", async function (event) {
     }
 
     loadingMessage.textContent = result.answer;
+    loadingMessage.textContent = result.answer;
+await saveAIChatHistory(question, result.answer);
   } catch (error) {
     loadingMessage.textContent =
       "⚠️ " + (error.message || "Connection failed. Please try again.");
