@@ -3251,6 +3251,81 @@ console.log("Auth error:", userError);
   }
 }
 
+const historyButton = document.getElementById("ai-history-button");
+const historyCloseButton = document.getElementById("ai-history-close");
+const historyList = document.getElementById("ai-history-list");
+
+historyButton.addEventListener("click", async function () {
+  historyButton.disabled = true;
+  historyButton.textContent = "Loading...";
+
+  try {
+    const { data: { user }, error: userError } =
+      await supabaseClient.auth.getUser();
+
+    if (userError || !user) {
+      historyList.hidden = false;
+      historyList.textContent = "Please log in to view your chat history.";
+      return;
+    }
+
+    const { data, error } = await supabaseClient
+      .from("ai_chat_history")
+      .select("id, question, answer, created_at")
+      .eq("user_id", user.id)
+      .order("created_at", { ascending: false })
+      .limit(50);
+
+    if (error) throw error;
+
+    historyList.replaceChildren();
+    historyList.hidden = false;
+    aiMessages.hidden = true;
+    aiForm.hidden = true;
+    historyButton.hidden = true;
+    historyCloseButton.hidden = false;
+
+    if (!data || data.length === 0) {
+      historyList.textContent = "No chat history found yet.";
+      return;
+    }
+
+    data.forEach(function (item) {
+      const entry = document.createElement("div");
+      entry.className = "ai-history-entry";
+
+      const date = document.createElement("p");
+      date.textContent = item.created_at
+        ? new Date(item.created_at).toLocaleString()
+        : "";
+
+      const question = document.createElement("p");
+      question.textContent = "You: " + item.question;
+
+      const answer = document.createElement("p");
+      answer.textContent = "Pranto AI: " + item.answer;
+
+      entry.append(date, question, answer);
+      historyList.appendChild(entry);
+    });
+  } catch (error) {
+    console.error("Could not load chat history:", error);
+    historyList.hidden = false;
+    historyList.textContent = "Could not load history. Please try again.";
+  } finally {
+    historyButton.disabled = false;
+    historyButton.textContent = "View Chat History";
+  }
+});
+
+historyCloseButton.addEventListener("click", function () {
+  historyList.hidden = true;
+  aiMessages.hidden = false;
+  aiForm.hidden = false;
+  historyButton.hidden = false;
+  historyCloseButton.hidden = true;
+});
+
 function addChatBubble(text, sender) {
   const bubble = document.createElement("div");
   bubble.className = "ai-chat-bubble " + sender;
