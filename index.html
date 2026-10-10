@@ -1413,27 +1413,23 @@ const fileButton = resource.file_url
 }
 
 
+
+
 /* =========================================================
    SAFE URL
 ========================================================= */
 
 function safeURL(url) {
-  
-function downloadURL(url) {
-  const safe = safeURL(url);
-
-  if (safe === "#") {
+  if (typeof url !== "string" || !url.trim()) {
     return "#";
   }
 
   try {
-    const parsed = new URL(safe);
-    const filename =
-      decodeURIComponent(
-        parsed.pathname.split("/").pop()
-      ) || "resource";
+    const parsed = new URL(url);
 
-    parsed.searchParams.set("download", filename);
+    if (parsed.protocol !== "https:" && parsed.protocol !== "http:") {
+      return "#";
+    }
 
     return parsed.href;
   } catch (error) {
@@ -1442,22 +1438,67 @@ function downloadURL(url) {
 }
 
 
-  try {
+/* =========================================================
+   VIEW RESOURCE
+========================================================= */
 
-    const parsed =
-      new URL(url);
+function viewURL(url) {
+  const safe = safeURL(url);
 
-    if (
-      parsed.protocol === "https:" ||
-      parsed.protocol === "http:"
-    ) {
-      return parsed.href;
-    }
+  if (safe === "#") {
+    return "#";
+  }
 
-  } catch (error) {}
+  const pathname = new URL(safe).pathname.toLowerCase();
 
-  return "#";
+  const officeExtensions = [
+    ".ppt", ".pptx",
+    ".doc", ".docx",
+    ".xls", ".xlsx"
+  ];
+
+  const isOfficeFile = officeExtensions.some(
+    extension => pathname.endsWith(extension)
+  );
+
+  if (isOfficeFile) {
+    return (
+      "https://docs.google.com/gview?embedded=1&url=" +
+      encodeURIComponent(safe)
+    );
+  }
+
+  return safe;
 }
+
+
+/* =========================================================
+   DOWNLOAD RESOURCE
+========================================================= */
+
+function downloadURL(url) {
+  const safe = safeURL(url);
+
+  if (safe === "#") {
+    return "#";
+  }
+
+  const parsed = new URL(safe);
+  const encodedFilename = parsed.pathname.split("/").pop();
+
+  let filename = "resource";
+
+  try {
+    filename = decodeURIComponent(encodedFilename) || "resource";
+  } catch (error) {
+    filename = encodedFilename || "resource";
+  }
+
+  parsed.searchParams.set("download", filename);
+
+  return parsed.href;
+}
+
 
 
 /* =========================================================
