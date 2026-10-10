@@ -2471,5 +2471,63 @@ checkRoute();
   </form>
 </section>
 
+<script>
+const aiForm = document.getElementById("ai-chat-form");
+const aiQuestion = document.getElementById("ai-question");
+const aiMessages = document.getElementById("ai-chat-messages");
+
+aiForm.addEventListener("submit", async function (event) {
+  event.preventDefault();
+
+  const question = aiQuestion.value.trim();
+  if (!question) return;
+
+  const sendButton = aiForm.querySelector("button");
+  const userMessage = document.createElement("p");
+  userMessage.textContent = "🧑 You: " + question;
+  aiMessages.appendChild(userMessage);
+
+  aiQuestion.value = "";
+  sendButton.disabled = true;
+  sendButton.textContent = "Thinking...";
+
+  const loadingMessage = document.createElement("p");
+  loadingMessage.textContent = "🤖 AI is thinking...";
+  aiMessages.appendChild(loadingMessage);
+
+  try {
+    const response = await fetch(
+      "https://jtzeeeowgpjvhghcofhv.supabase.co/functions/v1/smart-processor",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": "sb_publishable__l1ySRrfuSG4V5AldrHQiQ_hD32xThY",
+          "Authorization": "Bearer sb_publishable__l1ySRrfuSG4V5AldrHQiQ_hD32xThY"
+        },
+        body: JSON.stringify({ question: question })
+      }
+    );
+
+    const result = await response.json();
+    loadingMessage.remove();
+
+    const answerMessage = document.createElement("p");
+    answerMessage.textContent = response.ok
+      ? "🤖 AI: " + result.answer
+      : "⚠️ " + (result.error || "Could not get an answer.");
+    aiMessages.appendChild(answerMessage);
+
+  } catch (error) {
+    loadingMessage.textContent =
+      "⚠️ Connection failed. Please try again.";
+  } finally {
+    sendButton.disabled = false;
+    sendButton.textContent = "Send";
+    aiMessages.scrollTop = aiMessages.scrollHeight;
+  }
+});
+</script>
+
 </body>
 </html>
