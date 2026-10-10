@@ -1840,13 +1840,15 @@ function openAIAuth(mode) {
   aiAuthModal.hidden = false;
 }
 
+
 document.getElementById("ai-open-login").addEventListener("click", () => {
-  openAIAuth("login");
+  window.location.href = "./login.html";
 });
 
 document.getElementById("ai-open-signup").addEventListener("click", () => {
-  openAIAuth("signup");
+  window.location.href = "./login.html?mode=signup";
 });
+
 
 document.getElementById("ai-close-auth").addEventListener("click", () => {
   aiAuthModal.hidden = true;
