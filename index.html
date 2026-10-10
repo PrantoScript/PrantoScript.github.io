@@ -1355,19 +1355,28 @@ async function loadPublicResources() {
     card.className =
       "card resource-card";
 
-    const fileButton =
-      resource.file_url
-        ? `
-          <a
-            href="${safeURL(resource.file_url)}"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="small-btn"
-          >
-            📥 View / Download
-          </a>
-        `
-        : "";
+    
+const fileButton = resource.file_url
+  ? `
+      <a
+        href="${safeURL(resource.file_url)}"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="small-btn"
+      >
+        👁️ View Resource
+      </a>
+
+      <a
+        href="${downloadURL(resource.file_url)}"
+        class="small-btn"
+        rel="noopener noreferrer"
+      >
+        📥 Download
+      </a>
+    `
+  : "";
+
 
     card.innerHTML = `
 
@@ -1409,6 +1418,29 @@ async function loadPublicResources() {
 ========================================================= */
 
 function safeURL(url) {
+  
+function downloadURL(url) {
+  const safe = safeURL(url);
+
+  if (safe === "#") {
+    return "#";
+  }
+
+  try {
+    const parsed = new URL(safe);
+    const filename =
+      decodeURIComponent(
+        parsed.pathname.split("/").pop()
+      ) || "resource";
+
+    parsed.searchParams.set("download", filename);
+
+    return parsed.href;
+  } catch (error) {
+    return "#";
+  }
+}
+
 
   try {
 
