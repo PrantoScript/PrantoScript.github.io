@@ -653,6 +653,25 @@
         font-size: 32px;
       }
     }
+    .ai-assistant-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.ai-assistant-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #2563eb;
+  flex-shrink: 0;
+}
+
+.ai-assistant-heading h2 {
+  margin: 0;
+}
   </style>
   
 <style>
@@ -2491,7 +2510,10 @@ checkRoute();
 
 <!-- AI Study Assistant -->
 <section id="ai-study-assistant">
-<h2>🤖 Pranto AI Study Assistant</h2>
+<div class="ai-assistant-heading">
+  <img src="pranto.jpeg" alt="Pranto" class="ai-assistant-avatar">
+  <h2>🤖 Pranto AI Study Assistant</h2>
+</div>
   <p>Ask questions and learn with AI.</p>
 
   <div id="ai-chat-messages">
