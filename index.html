@@ -1415,6 +1415,7 @@ const fileButton = resource.file_url
 
 
 
+
 /* =========================================================
    SAFE URL
 ========================================================= */
@@ -1427,7 +1428,7 @@ function safeURL(url) {
   try {
     const parsed = new URL(url);
 
-    if (parsed.protocol !== "https:" && parsed.protocol !== "http:") {
+    if (!["https:", "http:"].includes(parsed.protocol)) {
       return "#";
     }
 
@@ -1445,16 +1446,13 @@ function safeURL(url) {
 function viewURL(url) {
   const safe = safeURL(url);
 
-  if (safe === "#") {
-    return "#";
-  }
+  if (safe === "#") return "#";
 
-  const pathname = new URL(safe).pathname.toLowerCase();
+  const parsed = new URL(safe);
+  const pathname = parsed.pathname.toLowerCase();
 
   const officeExtensions = [
-    ".ppt", ".pptx",
-    ".doc", ".docx",
-    ".xls", ".xlsx"
+    ".ppt", ".pptx", ".doc", ".docx", ".xls", ".xlsx"
   ];
 
   const isOfficeFile = officeExtensions.some(
@@ -1462,10 +1460,8 @@ function viewURL(url) {
   );
 
   if (isOfficeFile) {
-    return (
-      "https://docs.google.com/gview?embedded=1&url=" +
-      encodeURIComponent(safe)
-    );
+    return "https://docs.google.com/gview?embedded=1&url=" +
+      encodeURIComponent(safe);
   }
 
   return safe;
@@ -1479,9 +1475,7 @@ function viewURL(url) {
 function downloadURL(url) {
   const safe = safeURL(url);
 
-  if (safe === "#") {
-    return "#";
-  }
+  if (safe === "#") return "#";
 
   const parsed = new URL(safe);
   const encodedFilename = parsed.pathname.split("/").pop();
@@ -1498,6 +1492,91 @@ function downloadURL(url) {
 
   return parsed.href;
 }
+
+
+/* =========================================================
+   PUBLIC RESOURCES
+========================================================= */
+
+async function loadPublicResources() {
+  const container = document.getElementById("publicResources");
+
+  container.innerHTML =
+    '<div class="loading">Loading resources...</div>';
+
+  try {
+    const { data, error } = await supabaseClient
+      .from("lectures")
+      .select("*")
+      .eq("published", true)
+      .order("id", { ascending: false });
+
+    if (error) throw error;
+
+    if (!data || data.length === 0) {
+      container.innerHTML =
+        '<div class="empty">📚 No resources published yet.</div>';
+      return;
+    }
+
+    container.innerHTML = "";
+
+    data.forEach(resource => {
+      const card = document.createElement("div");
+      card.className = "card resource-card";
+
+      const title = escapeHTML(resource.title);
+      const subject = escapeHTML(resource.subject);
+      const type = escapeHTML(resource.type);
+      const description = escapeHTML(resource.description);
+
+      let fileButtons = "";
+
+      if (resource.file_url) {
+        const safe = safeURL(resource.file_url);
+
+        if (safe !== "#") {
+          const viewLink = viewURL(safe);
+          const downloadLink = downloadURL(safe);
+
+          fileButtons = `
+            <a
+              href="${viewLink}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="small-btn"
+            >👁️ View Resource</a>
+
+            <a
+              href="${downloadLink}"
+              class="small-btn"
+              rel="noopener noreferrer"
+            >📥 Download</a>
+          `;
+        }
+      }
+
+      card.innerHTML = `
+        <span class="resource-type">${type}</span>
+        <h3>${title}</h3>
+        <p><strong>Subject:</strong> ${subject}</p>
+        ${description ? `<p>${description}</p>` : ""}
+        <div class="resource-actions">${fileButtons}</div>
+      `;
+
+      container.appendChild(card);
+    });
+  } catch (error) {
+    console.error("Failed to load resources:", error);
+
+    container.innerHTML = `
+      <div class="empty">
+        Resources are currently unavailable. Please try again later.
+      </div>
+    `;
+  }
+}
+
 
 
 
