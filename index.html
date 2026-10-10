@@ -1302,6 +1302,83 @@ const supabaseClient =
     SUPABASE_URL,
     SUPABASE_PUBLISHABLE_KEY
   );
+  
+/* AI USER AUTH */
+
+async function aiSignUp() {
+  const email = document.getElementById("ai-auth-email").value.trim();
+  const password = document.getElementById("ai-auth-password").value;
+  const status = document.getElementById("ai-auth-status");
+
+  if (!email || password.length < 6) {
+    status.textContent = "Enter a valid email and a password with at least 6 characters.";
+    return;
+  }
+
+  const { data, error } = await supabaseClient.auth.signUp({
+    email,
+    password
+  });
+
+  if (error) {
+    status.textContent = error.message;
+    return;
+  }
+
+  status.textContent = data.session
+    ? "Sign up successful! You are logged in."
+    : "Account request submitted. Check your email to confirm your account.";
+}
+
+async function aiSignIn() {
+  const email = document.getElementById("ai-auth-email").value.trim();
+  const password = document.getElementById("ai-auth-password").value;
+  const status = document.getElementById("ai-auth-status");
+
+  if (!email || !password) {
+    status.textContent = "Enter your email and password.";
+    return;
+  }
+
+  const { error } = await supabaseClient.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  if (error) {
+    status.textContent = error.message;
+    return;
+  }
+
+  status.textContent = "Login successful! You can now use image questions.";
+}
+
+async function aiSignOut() {
+  const status = document.getElementById("ai-auth-status");
+
+  const { error } = await supabaseClient.auth.signOut();
+
+  status.textContent = error
+    ? error.message
+    : "You have logged out. Text questions remain available.";
+}
+
+async function updateAIAuthStatus() {
+  const status = document.getElementById("ai-auth-status");
+  const { data, error } = await supabaseClient.auth.getUser();
+
+  if (error) {
+    status.textContent = "You can ask text questions without logging in.";
+    return;
+  }
+
+  status.textContent = data.user
+    ? "Logged in as " + data.user.email
+    : "You can ask text questions without logging in.";
+}
+
+updateAIAuthStatus();
+
 
 
 /* =========================================================
@@ -2567,6 +2644,24 @@ loadPublicResources();
 checkRoute();
 
 </script>
+
+<!-- AI USER AUTH -->
+<div id="ai-auth-box" class="card" style="max-width:480px; margin:20px auto; padding:24px;">
+  <h3>🔐 AI Assistant Login / Sign Up</h3>
+  <p>Login to ask questions using images and save your chat history.</p>
+
+  <label for="ai-auth-email">Email</label>
+  <input id="ai-auth-email" type="email" placeholder="Enter your email" autocomplete="email" style="width:100%; padding:12px; margin:8px 0 14px;">
+
+  <label for="ai-auth-password">Password</label>
+  <input id="ai-auth-password" type="password" placeholder="At least 6 characters" autocomplete="current-password" style="width:100%; padding:12px; margin:8px 0 14px;">
+
+  <button type="button" onclick="aiSignUp()">Sign Up</button>
+  <button type="button" onclick="aiSignIn()">Login</button>
+  <button type="button" onclick="aiSignOut()">Logout</button>
+
+  <p id="ai-auth-status" aria-live="polite">You can ask text questions without logging in.</p>
+</div>
 
 <!-- AI Study Assistant -->
 <section id="ai-study-assistant">
