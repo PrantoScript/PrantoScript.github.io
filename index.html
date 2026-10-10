@@ -1792,6 +1792,9 @@ async function aiSignOut() {
 
 async function updateAIAuthStatus() {
   const status = document.getElementById("ai-auth-status");
+
+  if (!status) return;
+
   const { data, error } = await supabaseClient.auth.getUser();
 
   if (error) {
