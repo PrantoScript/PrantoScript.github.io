@@ -1731,10 +1731,32 @@ const supabaseClient =
   );
   
 /* AI USER AUTH */
-
 async function aiSignUp() {
   const email = document.getElementById("ai-auth-email").value.trim();
   const password = document.getElementById("ai-auth-password").value;
+  const status = document.getElementById("ai-auth-status");
+
+  if (!status) return;
+
+  if (!email || password.length < 6) {
+    status.textContent = "Enter a valid email and a password with at least 6 characters.";
+    return;
+  }
+
+  const { data, error } = await supabaseClient.auth.signUp({
+    email,
+    password
+  });
+
+  if (error) {
+    status.textContent = error.message;
+    return;
+  }
+
+  status.textContent = data.session
+    ? "Sign up successful! You are logged in."
+    : "Account request submitted. Check your email to confirm your account.";
+}
 async function aiSignIn() {
   const email = document.getElementById("ai-auth-email").value.trim();
   const password = document.getElementById("ai-auth-password").value;
