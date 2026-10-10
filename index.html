@@ -849,6 +849,433 @@
   }
 }
 
+/* ===== Pranto AI - Professional Dark Theme ===== */
+
+#ai-study-assistant {
+  background: #0b1020;
+  color: #e5e7eb;
+  border: 1px solid #25304a;
+  border-radius: 18px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+#ai-study-assistant .ai-app-layout {
+  display: flex;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  align-items: stretch;
+  min-height: 620px;
+}
+
+#ai-study-assistant #ai-chat-sidebar {
+  width: 250px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  padding: 22px 16px;
+  background: #0f172a;
+  border-right: 1px solid #25304a;
+  display: flex;
+  flex-direction: column;
+  color: #e5e7eb;
+}
+
+#ai-study-assistant .ai-sidebar-brand,
+#ai-study-assistant .ai-mobile-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#ai-study-assistant .ai-sidebar-brand {
+  margin-bottom: 28px;
+}
+
+#ai-study-assistant .ai-brand-icon,
+#ai-study-assistant .ai-welcome-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #243b70;
+  color: #93c5fd;
+  border-radius: 12px;
+  width: 42px;
+  height: 42px;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+#ai-study-assistant .ai-sidebar-brand strong {
+  display: block;
+  font-size: 16px;
+}
+
+#ai-study-assistant .ai-sidebar-brand small {
+  display: block;
+  color: #94a3b8;
+  margin-top: 4px;
+}
+
+#ai-study-assistant #new-ai-chat {
+  width: 100%;
+  padding: 12px;
+  background: #2563eb;
+  color: white;
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+#ai-study-assistant .ai-sidebar-label {
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  color: #94a3b8;
+}
+
+#ai-study-assistant #ai-chat-history {
+  overflow-wrap: anywhere;
+  color: #cbd5e1;
+}
+
+#ai-study-assistant .ai-empty-history {
+  color: #94a3b8;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+#ai-study-assistant .ai-sidebar-bottom {
+  margin-top: auto;
+  padding-top: 24px;
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+#ai-study-assistant .ai-status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #34d399;
+  margin-right: 6px;
+}
+
+#ai-study-assistant .ai-main-panel {
+  flex: 1;
+  min-width: 0;
+  background: #0b1020;
+}
+
+#ai-study-assistant .ai-topbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  border-bottom: 1px solid #25304a;
+}
+
+#ai-study-assistant .ai-mobile-brand {
+  display: none;
+  margin-right: auto;
+}
+
+#ai-study-assistant .ai-auth-actions {
+  display: flex;
+  gap: 8px;
+}
+
+#ai-study-assistant .ai-auth-actions button {
+  padding: 9px 15px;
+  border-radius: 9px;
+  border: 1px solid #334155;
+  background: transparent;
+  color: #e5e7eb;
+  cursor: pointer;
+}
+
+#ai-study-assistant #ai-open-signup {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: white;
+}
+
+#ai-study-assistant .ai-chat-content {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 32px 28px 20px;
+  box-sizing: border-box;
+}
+
+#ai-study-assistant .ai-assistant-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 25px;
+}
+
+#ai-study-assistant .ai-assistant-avatar {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #3b82f6;
+  flex-shrink: 0;
+}
+
+#ai-study-assistant .ai-assistant-heading h2 {
+  color: #f8fafc;
+  font-size: 22px;
+  margin: 0 0 8px;
+}
+
+#ai-study-assistant .ai-assistant-heading p {
+  color: #94a3b8;
+  font-size: 13px;
+  margin: 0;
+}
+
+#ai-study-assistant #ai-chat-messages {
+  min-height: 300px;
+  max-height: 480px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 22px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: #e5e7eb;
+  overflow-wrap: anywhere;
+}
+
+#ai-study-assistant .ai-welcome {
+  text-align: center;
+  margin: auto;
+  max-width: 480px;
+  padding: 30px 12px;
+}
+
+#ai-study-assistant .ai-welcome-icon {
+  margin: 0 auto 18px;
+  width: 54px;
+  height: 54px;
+  font-size: 28px;
+}
+
+#ai-study-assistant .ai-welcome h3 {
+  color: #f8fafc;
+  font-size: 23px;
+  margin-bottom: 10px;
+}
+
+#ai-study-assistant .ai-welcome p {
+  color: #94a3b8;
+  line-height: 1.7;
+}
+
+#ai-study-assistant .ai-chat-bubble {
+  box-sizing: border-box;
+  width: fit-content;
+  max-width: 90%;
+  padding: 14px 18px;
+  border-radius: 14px;
+  font-size: 15px;
+  line-height: 1.75;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+#ai-study-assistant .ai-chat-bubble.user {
+  align-self: flex-end;
+  background: #1d4ed8;
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+#ai-study-assistant .ai-chat-bubble.assistant {
+  align-self: flex-start;
+  width: 100%;
+  max-width: 100%;
+  background: #151e32;
+  border: 1px solid #25304a;
+  color: #e2e8f0;
+  border-bottom-left-radius: 4px;
+}
+
+#ai-study-assistant #ai-chat-form {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: #151e32;
+  border: 1px solid #334155;
+  border-radius: 14px;
+  margin-top: 15px;
+}
+
+#ai-study-assistant #ai-question {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  padding: 12px 8px;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: white;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+#ai-study-assistant #ai-question::placeholder {
+  color: #94a3b8;
+}
+
+#ai-study-assistant #ai-chat-form button {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 10px;
+  background: #2563eb;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+#ai-study-assistant #ai-chat-form button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+#ai-study-assistant .ai-disclaimer {
+  color: #64748b;
+  font-size: 11px;
+  text-align: center;
+  margin-top: 14px;
+}
+
+#ai-study-assistant .ai-auth-modal[hidden] {
+  display: none !important;
+}
+
+#ai-study-assistant .ai-auth-modal {
+  position: relative;
+  padding: 20px;
+  margin: 20px;
+  background: #111827;
+  border: 1px solid #334155;
+  border-radius: 14px;
+}
+
+#ai-study-assistant .ai-auth-card {
+  max-width: 420px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#ai-study-assistant .ai-auth-card h3 {
+  margin: 0;
+  color: #f8fafc;
+}
+
+#ai-study-assistant .ai-auth-card p {
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+#ai-study-assistant .ai-auth-card label {
+  color: #cbd5e1;
+  font-size: 13px;
+}
+
+#ai-study-assistant .ai-auth-card input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #334155;
+  border-radius: 9px;
+  background: #0b1020;
+  color: white;
+}
+
+#ai-study-assistant #ai-auth-submit {
+  padding: 12px;
+  border: 0;
+  border-radius: 9px;
+  background: #2563eb;
+  color: white;
+  cursor: pointer;
+}
+
+#ai-study-assistant .ai-auth-close {
+  align-self: flex-end;
+  font-size: 24px;
+  border: 0;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 700px) {
+  #ai-study-assistant {
+    margin: 16px auto;
+    border-radius: 12px;
+  }
+
+  #ai-study-assistant .ai-app-layout {
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  #ai-study-assistant #ai-chat-sidebar {
+    width: 100%;
+    border-right: 0;
+    border-bottom: 1px solid #25304a;
+  }
+
+  #ai-study-assistant .ai-sidebar-brand {
+    margin-bottom: 16px;
+  }
+
+  #ai-study-assistant .ai-sidebar-bottom {
+    display: none;
+  }
+
+  #ai-study-assistant .ai-topbar {
+    justify-content: space-between;
+    padding: 14px;
+  }
+
+  #ai-study-assistant .ai-mobile-brand {
+    display: flex;
+  }
+
+  #ai-study-assistant .ai-chat-content {
+    padding: 22px 14px;
+  }
+
+  #ai-study-assistant .ai-assistant-heading h2 {
+    font-size: 18px;
+  }
+
+  #ai-study-assistant #ai-chat-messages {
+    min-height: 260px;
+  }
+
+  #ai-study-assistant .ai-chat-bubble {
+    max-width: 95%;
+  }
+}
+
 </style>
 
 </head>
