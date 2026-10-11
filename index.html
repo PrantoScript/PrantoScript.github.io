@@ -3227,15 +3227,17 @@ checkRoute();
   <small>Your AI Study Buddy ✨</small>
 </div>
       </div>
-<button type="button" id="ai-history-button">
+
+<button type="button" id="ai-history-button" aria-expanded="false" aria-controls="ai-history-list">
   <span>◷</span> Chat History
 </button>
 
-<div id="ai-history-list" hidden></div>
-      
+<div id="ai-history-list" class="ai-history-dropdown" hidden></div>
+
 <button type="button" id="new-ai-chat">
   <span>＋</span> New Chat
 </button>
+
       
 <button type="button" id="ai-history-button">
   <span>◷</span> Chat History
