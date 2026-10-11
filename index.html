@@ -3395,18 +3395,30 @@ const historyCloseButton = document.getElementById("ai-history-close");
 const historyList = document.getElementById("ai-history-list");
 
 historyButton.addEventListener("click", async function () {
+  
+  if (historyList.classList.contains("is-open")) {
+    historyList.classList.remove("is-open");
+    historyButton.setAttribute("aria-expanded", "false");
+    historyList.hidden = true;
+    return;
+  }
+
   historyButton.disabled = true;
-  historyButton.textContent = "Loading...";
+  historyButton.querySelector("span").textContent = "◷";
 
   try {
     const { data: { user }, error: userError } =
       await supabaseClient.auth.getUser();
 
-    if (userError || !user) {
-      historyList.hidden = false;
-      historyList.textContent = "Please log in to view your chat history.";
-      return;
-    }
+   
+if (userError || !user) {
+  historyList.textContent = "Please log in to view your chat history.";
+  historyList.hidden = false;
+  historyList.classList.add("is-open");
+  historyButton.setAttribute("aria-expanded", "true");
+  return;
+}
+
 
     const { data, error } = await supabaseClient
       .from("ai_chat_history")
@@ -3417,12 +3429,12 @@ historyButton.addEventListener("click", async function () {
 
     if (error) throw error;
 
-    historyList.replaceChildren();
-    historyList.hidden = false;
-    aiMessages.hidden = true;
-    aiForm.hidden = true;
-    historyButton.hidden = true;
-    historyCloseButton.hidden = false;
+    
+historyList.replaceChildren();
+historyList.hidden = false;
+historyButton.setAttribute("aria-expanded", "true");
+historyList.classList.add("is-open");
+
 
     if (!data || data.length === 0) {
       historyList.textContent = "No chat history found yet.";
@@ -3453,7 +3465,7 @@ historyButton.addEventListener("click", async function () {
     historyList.textContent = "Could not load history. Please try again.";
   } finally {
     historyButton.disabled = false;
-    historyButton.textContent = "View Chat History";
+    historyButton.querySelector("span").textContent = "◷";
   }
 });
 
