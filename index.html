@@ -1617,15 +1617,15 @@
   
 /* ORI - Cute 3D Robot */
 #ori-mascot {
-  position: fixed;
-  right: 24px;
-  bottom: 24px;
-  z-index: 9999;
-  width: 150px;
+  position: relative;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 auto 20px;
+  z-index: 10;
   font-family: Arial, sans-serif;
 }
 #ori-greeting {
@@ -3786,6 +3786,10 @@ checkRoute();
   <div class="ai-app-layout">
 
     <!-- Sidebar -->
+    <div id="ori-mascot" aria-label="Ori, your friendly robot assistant">
+  <div id="ori-greeting" role="status" aria-live="polite">
+    Hi there! 👋 I'm Ori
+  </div>
     <aside id="ai-chat-sidebar">
       <div class="ai-sidebar-brand">
         <span class="ai-brand-icon">✦</span>
@@ -4089,10 +4093,7 @@ await saveAIChatHistory(question, result.answer);
 </script>
 
 <!-- ORI ROBOT MASCOT -->
-<div id="ori-mascot" aria-label="Ori, your friendly robot assistant">
-  <div id="ori-greeting" role="status" aria-live="polite">
-    Hi there! 👋 I'm Ori
-  </div>
+
 
   <button id="ori-robot" type="button" aria-label="Talk to Ori">
     <span class="ori-antenna"></span>
