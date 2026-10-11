@@ -1675,18 +1675,28 @@
   box-shadow: 0 0 14px #67e8f9;
 }
 
+
 .ori-head {
   position: absolute;
   top: 17px;
-  left: 10px;
-  width: 100px;
-  height: 75px;
+  left: 7px;
+  width: 106px;
+  height: 80px;
   border: 3px solid #e5e7eb;
-  border-radius: 35px 35px 30px 30px;
+  border-radius: 42% 42% 38% 38%;
   background: linear-gradient(145deg, #ffffff, #f3f4f6);
-  box-shadow: inset -5px -6px 10px #d1d5db,
-              inset 4px 4px 9px #ffffff;
+  box-shadow:
+    inset -5px -6px 10px #d1d5db,
+    inset 4px 4px 9px #ffffff;
+  animation: oriHeadMove 3s ease-in-out infinite;
 }
+
+@keyframes oriHeadMove {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(3deg); }
+  75% { transform: rotate(-3deg); }
+}
+
 
 /* Cute panda ears */
 .ori-head::before,
