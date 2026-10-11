@@ -3536,18 +3536,18 @@ data.forEach(function (item) {
   date.textContent = item.created_at
     ? new Date(item.created_at).toLocaleDateString()
     : "";
+entry.addEventListener("click", function () {
+  aiMessages.replaceChildren();
 
-  entry.append(title, date);
-  entry.addEventListener("click", function () {
+  addChatBubble(item.question, "user");
+  addChatBubble(item.answer, "assistant");
+
   historyList.hidden = true;
   historyList.classList.remove("is-open");
   historyButton.setAttribute("aria-expanded", "false");
 
   aiQuestion.focus();
 });
-  historyList.appendChild(entry);
-});
-
 
   } catch (error) {
     console.error("Could not load chat history:", error);
