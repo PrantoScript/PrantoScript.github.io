@@ -3523,40 +3523,24 @@ historyList.classList.add("is-open");
     }
 
   
-data.forEach(function (item) {
-  const entry = document.createElement("div");
-  entry.className = "ai-history-entry";
 
-  const date = document.createElement("p");
-  date.className = "ai-history-date";
+data.forEach(function (item) {
+  const entry = document.createElement("button");
+  entry.type = "button";
+  entry.className = "ai-history-entry ai-history-title";
+
+  const title = document.createElement("span");
+  title.textContent = item.question || "Untitled chat";
+
+  const date = document.createElement("small");
   date.textContent = item.created_at
-    ? new Date(item.created_at).toLocaleString()
+    ? new Date(item.created_at).toLocaleDateString()
     : "";
 
-  const question = document.createElement("div");
-  question.className = "ai-history-question";
-
-  const questionLabel = document.createElement("strong");
-  questionLabel.textContent = "You";
-
-  const questionText = document.createElement("p");
-  questionText.textContent = item.question || "";
-
-  question.append(questionLabel, questionText);
-
-  const answer = document.createElement("div");
-  answer.className = "ai-history-answer";
-
-  const answerLabel = document.createElement("strong");
-  answerLabel.textContent = "✦ Orio";
-
-  const answerText = document.createElement("p");
-  answerText.textContent = item.answer || "";
-
-  answer.append(answerLabel, answerText);
-  entry.append(date, question, answer);
+  entry.append(title, date);
   historyList.appendChild(entry);
 });
+
 
   } catch (error) {
     console.error("Could not load chat history:", error);
