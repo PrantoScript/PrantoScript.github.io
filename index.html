@@ -3548,7 +3548,9 @@ entry.addEventListener("click", function () {
 
   aiQuestion.focus();
 });
-
+  entry.append(title, date);
+  historyList.appendChild(entry);
+});
   } catch (error) {
     console.error("Could not load chat history:", error);
     historyList.hidden = false;
