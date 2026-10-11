@@ -1566,6 +1566,45 @@
   box-shadow: 0 7px 16px rgba(91, 62, 145, 0.14);
 }
 
+/* Orio Premium Chat History Button */
+#ai-history-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 18px;
+  margin: 12px 0;
+  border: 1px solid #ddd6fe;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #f5f0ff, #eaf3ff);
+  color: #5b3e91;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(91, 62, 145, 0.10);
+  transition: background 0.25s ease,
+              box-shadow 0.25s ease,
+              transform 0.25s ease;
+}
+
+#ai-history-button span {
+  font-size: 20px;
+  line-height: 1;
+}
+
+#ai-history-button:hover {
+  background: linear-gradient(135deg, #e9ddff, #dceaff);
+  border-color: #b9a3ef;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(91, 62, 145, 0.16);
+}
+
+#ai-history-button:focus-visible {
+  outline: 3px solid #a78bfa;
+  outline-offset: 3px;
+}
+
 </style>
 
 </head>
