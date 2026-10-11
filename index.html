@@ -1882,6 +1882,98 @@
   0%, 100% { transform: translateY(0) rotate(0); }
   50% { transform: translateY(-8px) rotate(2deg); }
 }
+  
+/* Orio's cute panda look */
+.ori-head {
+  background: #fff !important;
+  border: 3px solid #e5e7eb !important;
+  border-radius: 42% 42% 38% 38% !important;
+  box-shadow: 0 5px 12px #00000012,
+              inset -5px -5px 10px #e5e7eb !important;
+}
+
+/* Round panda ears */
+.ori-head::before,
+.ori-head::after {
+  content: "";
+  position: absolute;
+  top: -13px;
+  width: 28px;
+  height: 28px;
+  background: #292524;
+  border: 3px solid white;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.ori-head::before { left: -5px; }
+.ori-head::after { right: -5px; }
+
+/* Panda eye patches */
+.ori-eye {
+  width: 25px !important;
+  height: 29px !important;
+  top: 21px !important;
+  background: #292524 !important;
+  border-radius: 50% !important;
+  box-shadow: none !important;
+}
+
+.ori-eye-left { left: 16px !important; }
+.ori-eye-right { right: 16px !important; }
+
+.ori-eye::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 7px;
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+}
+
+/* Blush cheeks */
+.ori-head {
+  overflow: visible;
+}
+
+.ori-head .ori-smile::before {
+  content: " ";
+  position: absolute;
+  left: -34px;
+  top: -4px;
+  width: 15px;
+  height: 9px;
+  border-radius: 50%;
+  background: #f9a8d4;
+  box-shadow: 53px 0 #f9a8d4;
+}
+
+/* Gentle, lively movement */
+#ori-robot {
+  transform-origin: bottom center;
+  transition: transform .25s ease;
+}
+
+#ori-robot:hover {
+  transform: translateY(-8px) rotate(-3deg) scale(1.04);
+}
+
+#ori-robot:active {
+  transform: scale(.94);
+}
+
+.ori-body {
+  animation: oriBreathing 2s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+@keyframes oriBreathing {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05, .97); }
+}
+
 </style>
 
 </head>
@@ -4019,6 +4111,43 @@ await saveAIChatHistory(question, result.answer);
   </button>
 </div>
 
+
+<script>
+const orio = document.getElementById("ori-robot");
+const greeting = document.getElementById("ori-greeting");
+
+if (orio && greeting && !orio.dataset.reactionReady) {
+  orio.dataset.reactionReady = "true";
+
+  const messages = [
+    "Hi there! 👋 I'm Orio",
+    "Welcome to Pranto.dev! 💜",
+    "Hello! How are you today? 😊",
+    "How can I help you? ✨"
+  ];
+
+  let index = 0;
+  let shy = false;
+
+  setInterval(() => {
+    if (!shy) {
+      index = (index + 1) % messages.length;
+      greeting.textContent = messages[index];
+    }
+  }, 3500);
+
+  orio.addEventListener("click", () => {
+    shy = true;
+    greeting.textContent = "Hehe! 🙈 You're making me shy! 💗";
+    orio.style.transform = "translateY(-12px) rotate(-8deg) scale(1.08)";
+
+    setTimeout(() => {
+      orio.style.transform = "";
+      shy = false;
+    }, 1800);
+  });
+}
+</script>
 
 </body>
 </html>
