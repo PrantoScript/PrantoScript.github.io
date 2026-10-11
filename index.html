@@ -3538,6 +3538,13 @@ data.forEach(function (item) {
     : "";
 
   entry.append(title, date);
+  entry.addEventListener("click", function () {
+  historyList.hidden = true;
+  historyList.classList.remove("is-open");
+  historyButton.setAttribute("aria-expanded", "false");
+
+  aiQuestion.focus();
+});
   historyList.appendChild(entry);
 });
 
