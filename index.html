@@ -732,6 +732,28 @@
     box-sizing: border-box;
   }
 }
+    /* Orio Premium Chat History Button */
+#ai-study-assistant #historyButton,
+#ai-study-assistant .ai-history-button {
+  border: 1px solid rgba(139, 92, 246, 0.22);
+  border-radius: 14px;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #f5f0ff, #edf5ff);
+  color: #514078;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 3px 12px rgba(112, 86, 168, 0.08);
+}
+
+#ai-study-assistant #historyButton:hover,
+#ai-study-assistant .ai-history-button:hover {
+  background: linear-gradient(135deg, #e9ddff, #dcecff);
+  border-color: #b7a0ed;
+  transform: translateY(-2px);
+  box-shadow: 0 7px 18px rgba(112, 86, 168, 0.15);
+}
   </style>
   
 <style>
@@ -1513,6 +1535,35 @@
   white-space: pre-wrap;
   overflow-wrap: anywhere;
   font-size: 13px;
+}
+
+/* Orio Premium Chat History Button */
+#ai-chat-sidebar #historyButton,
+#ai-chat-sidebar .ai-history-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 16px;
+  margin-top: 12px;
+  border: 1px solid #ddd6fe;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #f5f0ff, #eef5ff);
+  color: #5b3e91;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(91, 62, 145, 0.08);
+}
+
+#ai-chat-sidebar #historyButton:hover,
+#ai-chat-sidebar .ai-history-button:hover {
+  background: linear-gradient(135deg, #e9ddff, #dceaff);
+  border-color: #b9a3ef;
+  transform: translateY(-2px);
+  box-shadow: 0 7px 16px rgba(91, 62, 145, 0.14);
 }
 
 </style>
