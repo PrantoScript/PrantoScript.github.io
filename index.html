@@ -2254,15 +2254,13 @@ function drawMatrix() {
     drops[i]++;
   }
 }
+
 function animateMatrix() {
   drawMatrix();
   requestAnimationFrame(animateMatrix);
 }
 
 animateMatrix();
-
-window.addEventListener("resize", setupMatrix);
-setInterval(drawMatrix, 50);
 
 window.addEventListener("resize", setupMatrix);
 
