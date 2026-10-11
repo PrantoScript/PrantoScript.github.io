@@ -1614,6 +1614,188 @@
   pointer-events: none;
   opacity: 0.22;
 }
+  
+/* ORI - Cute 3D Robot */
+#ori-mascot {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 9999;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  font-family: Arial, sans-serif;
+}
+
+#ori-greeting {
+  max-width: 210px;
+  padding: 11px 15px;
+  border-radius: 18px 18px 18px 5px;
+  background: linear-gradient(135deg, #ffffff, #ede9fe);
+  color: #312e81;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  box-shadow: 0 6px 22px rgba(139, 92, 246, 0.2);
+  animation: oriBubble 3s ease-in-out infinite;
+}
+
+#ori-robot {
+  position: relative;
+  width: 120px;
+  height: 150px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  animation: oriFloat 3s ease-in-out infinite;
+  filter: drop-shadow(0 12px 12px rgba(91, 33, 182, 0.2));
+}
+
+.ori-antenna {
+  position: absolute;
+  top: 0;
+  left: 56px;
+  width: 8px;
+  height: 22px;
+  border-radius: 8px;
+  background: #a78bfa;
+}
+
+.ori-antenna::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: -4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #22d3ee;
+  box-shadow: 0 0 14px #67e8f9;
+}
+
+.ori-head {
+  position: absolute;
+  top: 17px;
+  left: 10px;
+  width: 100px;
+  height: 75px;
+  border: 3px solid #d8ccff;
+  border-radius: 30px;
+  background: linear-gradient(145deg, #ffffff, #ddd6fe);
+  box-shadow: inset -5px -6px 10px #c4b5fd,
+              inset 4px 4px 9px #ffffff;
+}
+
+.ori-eye {
+  position: absolute;
+  top: 23px;
+  width: 16px;
+  height: 21px;
+  border-radius: 50%;
+  background: #0891b2;
+  box-shadow: inset 3px 3px 4px #67e8f9,
+              0 0 8px rgba(6, 182, 212, 0.4);
+  animation: oriBlink 4s infinite;
+}
+
+.ori-eye-left { left: 23px; }
+.ori-eye-right { right: 23px; }
+
+.ori-smile {
+  position: absolute;
+  left: 39px;
+  bottom: 12px;
+  width: 22px;
+  height: 10px;
+  border-bottom: 3px solid #7c3aed;
+  border-radius: 0 0 18px 18px;
+}
+
+.ori-body {
+  position: absolute;
+  left: 30px;
+  top: 94px;
+  width: 60px;
+  height: 42px;
+  border: 2px solid #d8ccff;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #ffffff, #c4b5fd);
+  box-shadow: inset -4px -4px 8px #a78bfa;
+}
+
+.ori-heart {
+  display: block;
+  margin-top: 8px;
+  color: #ec4899;
+  font-size: 21px;
+  text-shadow: 0 0 8px #f9a8d4;
+}
+
+.ori-arm {
+  position: absolute;
+  top: 99px;
+  width: 17px;
+  height: 35px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #c4b5fd, #ffffff);
+}
+
+.ori-arm-left {
+  left: 15px;
+  transform: rotate(22deg);
+}
+
+.ori-arm-right {
+  right: 12px;
+  transform: rotate(-25deg);
+  transform-origin: top center;
+  animation: oriWave 1.2s ease-in-out infinite alternate;
+}
+
+.ori-leg {
+  position: absolute;
+  top: 131px;
+  width: 18px;
+  height: 15px;
+  border-radius: 8px;
+  background: #a78bfa;
+}
+
+.ori-leg-left { left: 39px; }
+.ori-leg-right { right: 39px; }
+
+@keyframes oriFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes oriWave {
+  from { transform: rotate(-25deg); }
+  to { transform: rotate(-65deg); }
+}
+
+@keyframes oriBlink {
+  0%, 44%, 48%, 100% { transform: scaleY(1); }
+  46% { transform: scaleY(0.12); }
+}
+
+@keyframes oriBubble {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+@media (max-width: 600px) {
+  #ori-mascot {
+    right: 10px;
+    bottom: 12px;
+    transform: scale(0.85);
+    transform-origin: bottom right;
+  }
+}
+
 </style>
 
 </head>
