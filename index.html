@@ -1412,6 +1412,28 @@
 #ai-study-assistant .ai-empty-history {
   color: #776b96 !important;
 }
+  
+/* Orio Chat History slide animation */
+#ai-study-assistant .ai-history-dropdown {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: max-height 0.35s ease, opacity 0.25s ease,
+              transform 0.35s ease;
+}
+
+#ai-study-assistant .ai-history-dropdown.is-open {
+  max-height: 420px;
+  opacity: 1;
+  transform: translateY(0);
+  overflow-y: auto;
+}
+
+#ai-study-assistant #ai-history-button {
+  cursor: pointer;
+}
+
 </style>
 
 </head>
