@@ -710,11 +710,42 @@ margin: 30px auto;
   overflow-wrap: anywhere;
 }
 
-.ai-app-layout #ai-study-assistant {
+#ai-study-assistant {
+  width: 100%;
+  max-width: 1200px;
+  margin: 30px auto;
+  box-sizing: border-box;
+}
+
+.ai-app-layout {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+  box-sizing: border-box;
+  align-items: flex-start;
+}
+
+.ai-app-layout > #ai-chat-sidebar {
+  flex: 0 0 250px;
+}
+
+.ai-app-layout > #ai-chat-sidebar + * {
   flex: 1;
   min-width: 0;
-  max-width: none;
-  margin: 0;
+}
+
+@media (max-width: 700px) {
+  .ai-app-layout {
+    flex-direction: column;
+  }
+
+  .ai-app-layout > #ai-chat-sidebar {
+    flex: none;
+    width: 100%;
+  }
 }
 
 @media (max-width: 700px) {
