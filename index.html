@@ -4171,6 +4171,15 @@ checkRoute();
 const aiForm = document.getElementById("ai-chat-form");
 const aiQuestion = document.getElementById("ai-question");
 const aiMessages = document.getElementById("ai-chat-messages");
+  const newAIChatButton = document.getElementById("new-ai-chat");
+
+if (newAIChatButton) {
+  newAIChatButton.addEventListener("click", function () {
+    aiMessages.replaceChildren();
+    aiQuestion.value = "";
+    aiQuestion.focus();
+  });
+}
   async function saveAIChatHistory(question, answer) {
   const { data: { user }, error: userError } =
     await supabaseClient.auth.getUser();
