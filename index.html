@@ -2182,6 +2182,58 @@ body {
     animation: none;
   }
 }
+  /* Orio Answering Animation */
+#ai-study-assistant .pranto-thinking {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px;
+  border-radius: 18px;
+  background: rgba(139, 92, 246, 0.08);
+  color: #6d28d9;
+  font-weight: 600;
+}
+
+#ai-study-assistant .pranto-thinking-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #b8a5ff;
+  box-shadow: 0 0 12px rgba(139, 92, 246, 0.4);
+  animation: orioAvatarGlow 1.5s ease-in-out infinite;
+}
+
+#ai-study-assistant .thinking-dots {
+  display: inline-block;
+  width: 18px;
+  overflow: hidden;
+  vertical-align: bottom;
+  animation: orioDots 1.2s steps(4, end) infinite;
+}
+
+@keyframes orioAvatarGlow {
+  0%, 100% {
+    box-shadow: 0 0 6px rgba(139, 92, 246, 0.25);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.7);
+    transform: scale(1.06);
+  }
+}
+
+@keyframes orioDots {
+  0% { width: 0; }
+  100% { width: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #ai-study-assistant .pranto-thinking-avatar,
+  #ai-study-assistant .thinking-dots {
+    animation: none;
+  }
+}
 </style>
 
 </head>
@@ -4256,10 +4308,13 @@ aiForm.addEventListener("submit", async function (event) {
   sendButton.disabled = true;
   sendButton.textContent = "Thinking...";
 
-  const loadingMessage = addChatBubble(
-    "🤖 Ai is thinking...",
-    "assistant"
-  );
+const loadingMessage = addChatBubble(
+  `<span class="pranto-thinking">
+    <img src="pranto.jpeg" alt="Orio" class="pranto-thinking-avatar">
+    <span>Orio is answering<span class="thinking-dots">...</span></span>
+  </span>`,
+  "assistant"
+);
 
   try {
     const response = await fetch(
