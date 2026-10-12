@@ -4316,7 +4316,14 @@ aiForm.addEventListener("submit", async function (event) {
   sendButton.disabled = true;
   sendButton.textContent = "Thinking...";
 
-```javascript
+const loadingMessage = addChatBubble(
+  '<span class="pranto-thinking"><img src="pranto.jpeg" alt="Orio" class="pranto-thinking-avatar"><span>Orio is answering<span class="thinking-dots">...</span></span></span>',
+  "assistant"
+);
+
+try {
+
+'''javascript
 
   try {
     const response = await fetch(
