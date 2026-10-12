@@ -1650,22 +1650,27 @@ margin: 30px auto;
 }
   
 /* ORI - Cute 3D Robot */
+
+/* ORI - Cute 3D Robot */
 #ori-mascot {
-  position: fixed !important;
-  right: 20px !important;
-  bottom: 20px !important;
-  z-index: 999999 !important;
-  width: 150px;
+  position: relative !important;
+  right: auto !important;
+  bottom: auto !important;
+  z-index: 10 !important;
+  width: 100%;
+  max-width: 150px;
   display: flex !important;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  margin: 0;
+  margin: 0 auto;
   font-family: Arial, sans-serif;
   visibility: visible !important;
   opacity: 1 !important;
+  box-sizing: border-box;
 }
+
 #ori-greeting {
   max-width: 210px;
   padding: 11px 15px;
@@ -2010,6 +2015,80 @@ margin: 30px auto;
 @keyframes oriBreathing {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.05, .97); }
+}
+
+/* Pranto AI — Global Layout Repair */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+#ai-study-assistant {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+#ai-study-assistant *,
+#ai-study-assistant *::before,
+#ai-study-assistant *::after {
+  box-sizing: border-box;
+}
+
+#ai-study-assistant .ai-app-layout {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin: 0 auto;
+}
+
+#ai-study-assistant #ai-chat-sidebar {
+  flex: 0 0 250px;
+  min-width: 0;
+}
+
+#ai-study-assistant .ai-main-panel {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 100%;
+}
+
+#ai-study-assistant .ai-chat-content {
+  width: 100%;
+  max-width: 850px;
+  min-width: 0;
+  margin: 0 auto;
+}
+
+#ai-study-assistant input,
+#ai-study-assistant button {
+  max-width: 100%;
+}
+
+@media (max-width: 700px) {
+  #ai-study-assistant .ai-app-layout {
+    flex-direction: column;
+  }
+
+  #ai-study-assistant #ai-chat-sidebar {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  #ai-study-assistant .ai-main-panel {
+    width: 100%;
+  }
+
+  #ai-study-assistant .ai-chat-content {
+    padding: 20px 14px;
+  }
 }
 
 </style>
@@ -3823,12 +3902,8 @@ checkRoute();
 <section id="ai-study-assistant">
   <div class="ai-app-layout">
 
-    <!-- Sidebar -->
-    <div id="ori-mascot" aria-label="Ori, your friendly robot assistant">
-  <div id="ori-greeting" role="status" aria-live="polite">
-    Hi there! 👋 I'm Ori
-  </div>
-   <aside id="ai-chat-sidebar">
+   <!-- Sidebar -->
+<aside id="ai-chat-sidebar">
       <div class="ai-sidebar-brand">
         <span class="ai-brand-icon">✦</span>
        <div>
@@ -4132,6 +4207,10 @@ await saveAIChatHistory(question, result.answer);
 
 <!-- ORI ROBOT MASCOT -->
 
+<div id="ori-mascot" aria-label="Ori, your friendly robot assistant">
+  <div id="ori-greeting" role="status" aria-live="polite">
+    Hi there! 👋 I'm Ori
+  </div>
 
   <button id="ori-robot" type="button" aria-label="Talk to Ori">
     <span class="ori-antenna"></span>
