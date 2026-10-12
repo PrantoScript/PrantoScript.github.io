@@ -4300,7 +4300,7 @@ function addChatBubble(text, sender) {
   aiMessages.scrollTop = aiMessages.scrollHeight;
   return bubble;
 }
-```
+
 
 aiForm.addEventListener("submit", async function (event) {
   event.preventDefault();
@@ -4350,7 +4350,7 @@ await saveAIChatHistory(question, result.answer);
     sendButton.disabled = false;
     sendButton.textContent = "Send";
     aiMessages.scrollTop = aiMessages.scrollHeight;
-    aiQuestion.focus();
+  
   }
 });
 </script>
