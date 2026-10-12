@@ -2147,7 +2147,41 @@ body {
     margin: 20px 10px !important;
   }
 }
+/* Pranto AI Avatar Animation */
+#ai-study-assistant .ai-assistant-heading .ai-assistant-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #b8a5ff;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 3px rgba(184, 165, 255, 0.16),
+              0 0 18px rgba(139, 92, 246, 0.35);
+  animation: prantoAvatarPulse 2.4s ease-in-out infinite;
+  transition: box-shadow 0.3s ease;
+}
 
+@keyframes prantoAvatarPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 3px rgba(184, 165, 255, 0.16),
+                0 0 12px rgba(139, 92, 246, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(184, 165, 255, 0.24),
+                0 0 24px rgba(139, 92, 246, 0.55);
+  }
+}
+
+#ai-study-assistant .ai-assistant-heading .ai-assistant-avatar:hover {
+  box-shadow: 0 0 0 6px rgba(184, 165, 255, 0.28),
+              0 0 28px rgba(139, 92, 246, 0.65);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #ai-study-assistant .ai-assistant-heading .ai-assistant-avatar {
+    animation: none;
+  }
+}
 </style>
 
 </head>
