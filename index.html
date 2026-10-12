@@ -4285,14 +4285,22 @@ entry.addEventListener("click", function () {
   }
 });
 
+```javascript
 function addChatBubble(text, sender) {
   const bubble = document.createElement("div");
   bubble.className = "ai-chat-bubble " + sender;
-  bubble.textContent = text;
+
+  if (sender === "assistant" && text.includes('class="pranto-thinking"')) {
+    bubble.innerHTML = text;
+  } else {
+    bubble.textContent = text;
+  }
+
   aiMessages.appendChild(bubble);
   aiMessages.scrollTop = aiMessages.scrollHeight;
   return bubble;
 }
+```
 
 aiForm.addEventListener("submit", async function (event) {
   event.preventDefault();
