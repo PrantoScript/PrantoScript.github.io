@@ -4322,11 +4322,7 @@ const loadingMessage = addChatBubble(
 );
 
 try {
-
-'''javascript
-
-  try {
-    const response = await fetch(
+  const response = await fetch(
       "https://jtzeeeowgpjvhghcofhv.supabase.co/functions/v1/smart-processor",
       {
         method: "POST",
@@ -4345,7 +4341,6 @@ try {
       throw new Error(result.error || "Could not get an answer.");
     }
 
-    loadingMessage.textContent = result.answer;
     loadingMessage.textContent = result.answer;
 await saveAIChatHistory(question, result.answer);
   } catch (error) {
